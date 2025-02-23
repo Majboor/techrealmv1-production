@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+._*
+
+# Editor
+*.swp
+*.swo
+
+# Logs / temp
+*.log
+.agent-tmp/
+node_modules/
