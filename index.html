@@ -34,70 +34,42 @@
             opacity: 0;
             transition: all 0.3s ease-out;
         }
-        .popup-overlay {
+          .popup-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+            backdrop-filter: blur(3px);
         }
 
         .popup-card {
-            background-color: #000000;
-            color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 400px;
+            background-color: white;
+            color: black;
+            max-width: 350px;
             width: 90%;
             position: relative;
             text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: slideIn 0.4s ease-out;
         }
 
-        .popup-icon {
-            width: 60px;
-            height: 60px;
-            background-color: #1d4ed8;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .popup-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
-
-        .popup-content {
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .popup-button {
-            background-color: #1d4ed8;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1rem;
-            transition: background-color 0.2s ease;
-        }
-
-        .popup-button:hover {
-            background-color: #1e40af;
+        @keyframes slideIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .close-button {
@@ -106,16 +78,165 @@
             right: 10px;
             background: none;
             border: none;
-            color: white;
-            font-size: 1.5rem;
+            color: #333;
+            font-size: 1.2rem;
             cursor: pointer;
             padding: 5px;
             line-height: 1;
+            z-index: 10;
+            transition: transform 0.2s;
         }
 
-        .show {
+        .close-button:hover {
+            transform: scale(1.1);
+        }
+
+        .popup-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+            padding: 25px 20px 10px 20px;
+            position: relative;
+            color: #000;
+        }
+
+        .popup-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: #000;
+            border-radius: 3px;
+        }
+
+        .popup-content {
+            padding: 15px 20px 0;
+        }
+
+        .popup-content p {
+            margin: 10px 0;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+
+        .price-highlight {
+            color: #436cb8;
+            font-weight: 700;
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 5px 0 15px 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .button-container {
             display: flex;
-            opacity: 1;
+            gap: 10px;
+            padding: 20px 20px 10px;
+        }
+
+        .email-button, .phone-button {
+            flex: 1;
+            padding: 12px 0;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+         background-color: #000;
+
+        }
+
+        .email-button {
+            background-color: #000;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-button:hover {
+            background-color: #222;
+            transform: translateY(-2px);
+        }
+
+        .phone-button {
+            background-color: white;
+            color: #000;
+            border: 1px solid #ddd;
+        }
+
+        .phone-button:hover {
+            background-color: #f5f5f5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-input {
+            width: calc(100% - 40px);
+            margin: 15px 20px 10px;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #000;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .discount-button {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: calc(100% - 40px);
+            margin: 15px 20px 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .discount-button:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .shine-effect {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-20deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            20% {
+                left: 100%;
+            }
+            100% {
+                left: 100%;
+            }
         }
     </style>
     <!-- Page Title -->
@@ -139,19 +260,26 @@
     <div id="loader-wrapper">
         <div id="loader"></div>
     </div>
-    <div class="popup-overlay" id="popupOverlay">
+     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-card">
             <button class="close-button" onclick="closePopup()">×</button>
-            <div class="popup-icon">T</div>
-            <h2 class="popup-title">Special Offer!</h2>
+            <h2 class="popup-title">Limited Time Offer!</h2>
             <div class="popup-content">
-                <p>Get your professional website today</p>
-                <p>Limited time offer: Only $15 USD</p>
-                <p>Don't miss this amazing deal!</p>
+                <p>Get a complete holistic website for just <span class="price-highlight">$15!</span></p>
+                <p class="original-price">Original price: $500-$1500</p>
             </div>
-            <button class="popup-button" onclick="closePopup()">Get My Website Now</button>
+            <div class="button-container">
+                <button class="email-button" id="emailBtn">Email</button>
+                <button class="phone-button" id="phoneBtn">Phone</button>
+            </div>
+            <input type="email" class="email-input" id="contactInput" placeholder="Enter your email">
+            <button class="discount-button" onclick="getDiscount()">
+                Get My Discount Now
+                <div class="shine-effect"></div>
+            </button>
         </div>
     </div>
+
     <!-- Header -->
     <header id="bringer-header" class="is-frosted is-sticky" data-appear="fade-down" data-unload="fade-up">
         <!-- Desktop Header -->
@@ -663,19 +791,66 @@
         $(document).ready(function() {
             // Your existing document ready code
         });
-         // Show popup after 1.5 seconds
-         window.addEventListener('load', () => {
+             window.onload = function() {
+            document.getElementById("popupOverlay").style.display = "flex";
+        };
+
+        // Close the popup
+        function closePopup() {
+            const overlay = document.getElementById("popupOverlay");
+            overlay.style.opacity = "0";
+            overlay.style.transition = "opacity 0.3s ease";
             setTimeout(() => {
-                const popup = document.getElementById('popupOverlay');
-                popup.classList.add('show');
-            }, 1500);
+                overlay.style.display = "none";
+            }, 300);
+        }
+
+        // Handle discount button click
+        function getDiscount() {
+            const input = document.getElementById('contactInput');
+            const contactType = document.getElementById('emailBtn').classList.contains('active') ? 'email' : 'phone';
+            
+            if (input.value) {
+                alert(`Thank you! Your discount has been sent to your ${contactType}: ${input.value}`);
+                closePopup();
+            } else {
+                input.style.borderColor = "#ff3333";
+                input.style.boxShadow = "0 0 0 3px rgba(255, 51, 51, 0.1)";
+                setTimeout(() => {
+                    input.style.borderColor = "#ddd";
+                    input.style.boxShadow = "inset 0 1px 3px rgba(0, 0, 0, 0.05)";
+                }, 1000);
+            }
+        }
+
+        // Toggle between email and phone
+        const emailBtn = document.getElementById('emailBtn');
+        const phoneBtn = document.getElementById('phoneBtn');
+        const contactInput = document.getElementById('contactInput');
+        
+        emailBtn.classList.add('active');
+        
+        emailBtn.addEventListener('click', function() {
+            this.style.backgroundColor = '#000';
+            this.style.color = 'white';
+            this.classList.add('active');
+            phoneBtn.style.backgroundColor = 'white';
+            phoneBtn.style.color = '#000';
+            phoneBtn.classList.remove('active');
+            contactInput.placeholder = 'Enter your email';
+            contactInput.type = 'email';
         });
 
-        // Close popup function
-        function closePopup() {
-            const popup = document.getElementById('popupOverlay');
-            popup.classList.remove('show');
-        }
+        phoneBtn.addEventListener('click', function() {
+            this.style.backgroundColor = '#000';
+            this.style.color = 'white';
+            this.classList.add('active');
+            emailBtn.style.backgroundColor = 'white';
+            emailBtn.style.color = '#000';
+            emailBtn.classList.remove('active');
+            contactInput.placeholder = 'Enter your phone number';
+            contactInput.type = 'tel';
+        });
     </script>
 
 </body></html>
