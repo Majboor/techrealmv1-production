@@ -1,0 +1,510 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loaded #loader-wrapper {
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+
+        /* Added styles for benefits bar */
+        .benefits-bar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 0 15px;
+        }
+        
+        .benefit-item h4 {
+            color: rgb(78, 119, 253);
+            margin-bottom: 5px;
+        }
+
+        /* Pricing table styles */
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .pricing-table th, .pricing-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .pricing-table th {
+            background-color: #f3f3f3;
+        }
+        
+        .pricing-table .highlight {
+            font-weight: bold;
+            color: rgb(78, 119, 253);
+        }
+        
+        .savings {
+            color: #28a745;
+        }
+
+        /* FAQ styles */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        /* Testimonial styles */
+        .testimonial {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: "\201C"; /* Unicode for left double quotation mark */
+            font-size: 60px;
+            color: rgba(78, 119, 253, 0.2);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        
+        .testimonial-content {
+            padding-left: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            margin-top: 15px;
+            text-align: right;
+        }
+    </style>
+    <!-- Page Title -->
+    <title>TechRealm | Dental Practice Growth Solutions</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Config -->
+    <link type="text/css" rel="stylesheet" href="css/config.css">
+    <!-- Libraries -->
+    <link type="text/css" rel="stylesheet" href="css/libs.css">
+    <!-- Template Styles -->
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <!-- Responsive -->
+    <link type="text/css" rel="stylesheet" href="css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.png" sizes="32x32">
+</head>
+<body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+    <!-- Header -->
+    <header id="bringer-header" class="is-frosted is-sticky" data-appear="fade-down" data-unload="fade-up">
+        <!-- Desktop Header -->
+        <div class="bringer-header-inner">
+            <!-- Header Logo -->
+            <div class="bringer-header-lp">
+                <a href="./" class="bringer-logo">
+                  <h2 style="font-size:30px;">Tech<span style="color:rgb(78, 119, 253);">Realm</span></h2> 
+                </a>
+            </div>
+            <!-- Main Menu -->
+            <div class="bringer-header-mp">
+                <nav class="bringer-nav">
+                    <ul class="main-menu" data-stagger-appear="fade-down" data-stagger-delay="75">
+                        <li class="current-menu-parent">
+                            <a href="/index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="/about/about.html">About Us</a>
+                        </li>
+                        <li>
+                            <a href="/services/service.html">Our Services</a>
+                        </li>
+                        <li>
+                            <a href="/portfolio/folio.html">Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="/contact/contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Header Button -->
+            <div class="bringer-header-rp">
+                <a href="#claim-audit" class="bringer-button">Claim Free Audit</a>
+            </div>
+        </div>
+        <!-- Mobile Header -->
+        <div class="bringer-mobile-header-inner">
+            <a href="./" class="bringer-logo">
+                <h2 style="font-size:30px;">Tech<span style="color:rgb(78, 119, 253);">Realm</span></h2> 
+            </a>
+            <a href="#" class="bringer-mobile-menu-toggler">
+                <i class="bringer-menu-toggler-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Main -->
+    <main id="bringer-main">
+        <div class="stg-container">
+            <!-- Section: Hero -->
+            <section class="backlight-bottom">
+                <div class="stg-row">
+                    <div class="stg-col-6 stg-offset-3 align-center stg-tp-col-10 stg-tp-offset-1">
+                        <div style="background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,0) 100%); padding: 30px; border-radius: 10px;">
+                            <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up" id="dynamic-headline">Dr. {ContactName}, see your {Suburb} clinic booked out 95% of the time</h1>
+                            <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">Fill 30+ empty slots monthly, reduce no-shows by 70%, and boost revenue by 25% with our AI-powered solutions.</p>
+                            <div style="margin-top: 30px;">
+                                <a href="#claim-audit" class="bringer-button" style="font-size: 18px; padding: 15px 30px;">Claim Your Free 30-Point Growth Audit</a>
+                                <p style="margin-top: 10px; font-size: 14px;">Includes website review, SEO health check, appointment workflow analysis.</p>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <a href="#sample-audit" style="color: rgb(78, 119, 253); text-decoration: none; font-size: 16px;">▶ See a sample audit</a>
+                            </div>
+                            <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 15px;">
+                                <p><strong>Trusted by 50+ Australian dental practices</strong></p>
+                                <div style="margin-top: 10px;">
+                                    <span style="color: rgb(78, 119, 253); font-size: 20px;">★★★★★</span>
+                                    <span style="font-size: 14px; margin-left: 5px;">4.9/5 average rating</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Benefits Bar -->
+            <section>
+                <div class="benefits-bar">
+                    <div class="benefit-item">
+                        <h4>+45%</h4>
+                        <p>More New Patients in 8 weeks</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>-70%</h4>
+                        <p>Fewer No-Shows with automated reminders</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>+25%</h4>
+                        <p>Revenue Uplift from every chair filled</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: What You Get -->
+            <section class="divider-bottom">
+                <div class="bringer-parallax-media stg-bottom-gap-l" data-appear="fade-up" data-delay="200" data-unload="fade-up">
+                    <img class="bringer-lazy" src="./images/about.jpg" data-src="./images/about.jpg" alt="Dental Practice Growth" width="1920" height="960">
+                </div>
+                <div class="stg-row stg-large-gap stg-tp-normal-gap">
+                    <div class="stg-col-6 stg-vertical-space-between stg-tp-bottom-gap-l" data-unload="fade-left">
+                        <h2 data-split-appear="fade-up">Fueling dental practices that thrive in the digital age</h2>
+                        <div class="align-right" data-appear="fade-right">
+                            <a href="#claim-audit" class="bringer-icon-link">
+                                <div class="bringer-icon-link-content">
+                                    <h6>
+                                        Unleash your
+                                        <br>
+                                        Practice's potential
+                                    </h6>
+                                    <span class="bringer-label">Get your free audit</span>
+                                </div>
+                                <div class="bringer-icon-wrap">
+                                    <i class="bringer-icon bringer-icon-explore"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="stg-col-6" data-appear="fade-left" data-unload="fade-right" data-delay="100">
+                        <p class="bringer-large-text">At TechRealm, we help Australian dental practices reduce costs and increase bookings through AI-powered solutions and offshore support.</p>
+                        <p>We're not just developers; we're dental practice growth specialists. We transform your online presence into a patient-attracting powerhouse, harness AI to automate appointment scheduling, and invest in solutions that reduce your operational costs while maximizing chair time.</p>
+                        <p>Our team of passionate and skilled developers, AI specialists, and digital strategists are dedicated to helping dental practices of all sizes thrive in the competitive Australian market. From cutting-edge booking systems to AI-driven patient reminders, we provide the technology that drives success.</p>
+                        <p>At TechRealm, we believe in the power of technology to transform dental practices. We help you build a strong digital foundation, leveraging AI, cloud solutions, and offshore support to create seamless, future-ready patient experiences that keep your chairs filled.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: How It Works -->
+            <section>
+                <!-- Section Title -->
+                <div class="stg-row bringer-section-title">
+                    <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
+                        <div class="align-center">
+                            <h2 data-appear="fade-up" data-unload="fade-up">How It Works</h2>
+                            <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">Our simple 3-step process gets your dental practice seeing results fast</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Process Steps -->
+                <div class="stg-row stg-large-gap">
+                    <div class="stg-col-4 align-center" data-appear="fade-up" data-delay="100">
+                        <div style="font-size: 48px; color: rgb(78, 119, 253); margin-bottom: 20px;">1</div>
+                        <h4>Book Your Free Audit</h4>
+                        <p>We'll analyze your current online presence, booking system, and identify growth opportunities.</p>
+                    </div>
+                    <div class="stg-col-4 align-center" data-appear="fade-up" data-delay="200">
+                        <div style="font-size: 48px; color: rgb(78, 119, 253); margin-bottom: 20px;">2</div>
+                        <h4>Tailored Launch Plan</h4>
+                        <p>We create a customized strategy for your practice based on your specific goals and budget.</p>
+                    </div>
+                    <div class="stg-col-4 align-center" data-appear="fade-up" data-delay="300">
+                        <div style="font-size: 48px; color: rgb(78, 119, 253); margin-bottom: 20px;">3</div>
+                        <h4>See Results Roll In</h4>
+                        <p>Watch as your chairs fill up, no-shows decrease, and revenue increases month after month.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Testimonial -->
+            <section class="backlight-top">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>Partnering with TechRealm, Bakery Hill Dental saw a 52% surge in new-patient bookings in just eight weeks. We're at 98% morning-slot capacity!</p>
+                        <div class="testimonial-author">– Dr. Priya Singh, Bakery Hill Dental, VIC</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Pricing & Savings -->
+            <section class="backlight-bottom divider-top">
+                <!-- Section Intro -->
+                <div class="stg-row stg-large-gap stg-bottom-gap-l">
+                    <div class="stg-col-6 stg-tp-col-8 stg-tp-bottom-gap-l" data-unload="fade-left">
+                        <h2 data-split-appear="fade-up">Pricing & Savings Comparison</h2>
+                    </div>
+                    <div class="stg-col-6 stg-tp-col-9 stg-tp-offset-3" data-unload="fade-right">
+                        <p class="bringer-large-text" data-split-appear="fade-up" data-delay="100">See how much you can save with our solutions compared to competitors</p>
+                    </div>
+                </div>
+                
+                <!-- Pricing Table -->
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Competitor Rate</th>
+                            <th>Our Rate</th>
+                            <th>Your Monthly Savings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Booking & Appointments</td>
+                            <td>Dentally Basic: AU$70/mo<br>Setmore Pro: AU$5/user/mo</td>
+                            <td class="highlight">AU$50/mo</td>
+                            <td class="savings">AU$20/mo (29% savings)</td>
+                        </tr>
+                        <tr>
+                            <td>Custom Dentist Website</td>
+                            <td>Social Space: AU$549 + AU$55/mo<br>RankRise: AU$339/mo</td>
+                            <td class="highlight">AU$250 one-time</td>
+                            <td class="savings">Save AU$304 up front</td>
+                        </tr>
+                        <tr>
+                            <td>Local SEO Optimization</td>
+                            <td>Safari Digital: AU$100/hr → AU$8,000/mo</td>
+                            <td class="highlight">AU$175 one-time + AU$150/mo</td>
+                            <td class="savings">AU$7,850/mo (98% savings)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Section: FAQ -->
+            <section>
+                <!-- Section Title -->
+                <div class="stg-row bringer-section-title">
+                    <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
+                        <div class="align-center">
+                            <h2 data-appear="fade-up" data-unload="fade-up">Frequently Asked Questions</h2>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Items -->
+                <div class="stg-row">
+                    <div class="stg-col-6" data-appear="fade-up" data-delay="100">
+                        <div class="faq-item">
+                            <div class="faq-question">Q: How soon will I see new patients?</div>
+                            <div class="faq-answer">A: Most clinics report new bookings within 2–4 weeks post-launch.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Q: Can I try the SEO package risk-free?</div>
+                            <div class="faq-answer">A: Yes—our one-time AU$175 set-up plus a 30-day guarantee on monthly AU$150 optimisations.</div>
+                        </div>
+                    </div>
+                    <div class="stg-col-6" data-appear="fade-up" data-delay="200">
+                        <div class="faq-item">
+                            <div class="faq-question">Q: Do you handle everything?</div>
+                            <div class="faq-answer">A: Yes—your dedicated Aussie specialist manages setup, launch, and ongoing optimisation.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Q: What makes your AI solutions different?</div>
+                            <div class="faq-answer">A: Our AI systems are specifically trained on dental practice data, making them more effective at reducing no-shows and optimizing scheduling than generic solutions.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Guarantee -->
+            <section class="backlight-top">
+                <div class="stg-row">
+                    <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
+                        <div class="align-center" style="background-color: #f8f9fa; padding: 40px; border-radius: 8px;">
+                            <h2 data-appear="fade-up" data-unload="fade-up">Our Guarantee</h2>
+                            <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100" style="color: #333;">"If you don't see at least a 30% lift in bookings in 8 weeks, we'll work free until you do."</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Bonus -->
+            <section>
+                <div class="stg-row">
+                    <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
+                        <div class="align-center" style="border: 2px dashed rgb(78, 119, 253); padding: 30px; border-radius: 8px;">
+                            <h3 data-appear="fade-up" data-unload="fade-up">Bonus Download</h3>
+                            <p data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">Free PDF: "7 Ways Dental Clinics in Australia Save AU$10,000+ with Smart Automation" when you book your audit.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Final CTA -->
+            <section id="claim-audit" class="backlight-bottom divider-top">
+                <div class="stg-row">
+                    <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
+                        <div class="align-center">
+                            <h2 data-appear="fade-up" data-unload="fade-up">Ready to Bank AU$7,850 in Monthly Savings and Fill 30 More Chairs?</h2>
+                            <div style="margin-top: 30px;">
+                                <a href="https://wa.me/923461115757?text=I'd%20like%20to%20claim%20my%20free%2030-point%20growth%20audit%20for%20my%20dental%20practice" class="bringer-button" style="font-size: 18px; padding: 15px 30px;">Start Your Free 30-Point Growth Audit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Footer Trust -->
+            <section>
+                <div class="stg-row">
+                    <div class="stg-col-12">
+                        <div class="align-center" style="margin-top: 50px; margin-bottom: 30px;">
+                            <p><strong>Trusted by 200+ Aussie clinics</strong></p>
+                            <p>HIPAA-compliant, SSL-encrypted, PCI-certified</p>
+                            <p><strong>Contact:</strong> 1800-DENTIST | <a href="mailto:hello@techrealm.au">hello@techrealm.au</a></p>
+                            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="bringer-footer">
+        <!-- Scripts -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/st-core.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            // Remove loader when page is fully loaded
+            window.addEventListener('load', function() {
+                document.body.classList.add('loaded');
+                
+                // Parse URL parameters for personalization
+                function getUrlParameter(name) {
+                    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                    var results = regex.exec(location.search);
+                    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+                }
+                
+                // Get personalization parameters
+                var contactName = getUrlParameter('contactName') || '{ContactName}';
+                var suburb = getUrlParameter('suburb') || '{Suburb}';
+                var clinicName = getUrlParameter('clinicName') || 'dental clinic';
+                
+                // Update headline with personalized information
+                var headline = document.getElementById('dynamic-headline');
+                if (headline) {
+                    headline.innerHTML = headline.innerHTML
+                        .replace('{ContactName}', contactName)
+                        .replace('{Suburb}', suburb)
+                        .replace('{ClinicName}', clinicName);
+                }
+            });
+        </script>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/libs.js"></script>
+    <script src="js/contact_form.js"></script>
+    <script src="js/st-core.js"></script>
+    <script src="js/classes.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Loader functionality
+        window.addEventListener('load', function() {
+            // Wait for a short delay to ensure all content is loaded
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 500);
+        });
+
+        // Your existing JavaScript code
+        $(document).ready(function() {
+            // Your existing document ready code
+        });
+    </script>
+</body>
+</html>
