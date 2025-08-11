@@ -1,0 +1,520 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loaded #loader-wrapper {
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+
+        /* Form Styles */
+        .tech-support-form {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        .form-section h3 {
+            color: rgb(78, 119, 253);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            flex: 1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgb(78, 119, 253);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, rgb(78, 119, 253), #5a6fd8);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 119, 253, 0.3);
+        }
+        
+        .urgency-high {
+            color: #dc3545;
+        }
+        
+        .urgency-medium {
+            color: #ffc107;
+        }
+        
+        .urgency-low {
+            color: #28a745;
+        }
+        
+        .urgency-critical {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .tech-support-form {
+                padding: 20px;
+                margin: 15px;
+            }
+        }
+    </style>
+    <!-- Page Title -->
+    <title>TechRealm | Tech Services Request</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Config -->
+    <link type="text/css" rel="stylesheet" href="css/config.css">
+    <!-- Libraries -->
+    <link type="text/css" rel="stylesheet" href="css/libs.css">
+    <!-- Template Styles -->
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <!-- Responsive -->
+    <link type="text/css" rel="stylesheet" href="css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.png" sizes="32x32">
+</head>
+<body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+    <!-- Header -->
+    <header id="bringer-header" class="is-frosted is-sticky" data-appear="fade-down" data-unload="fade-up">
+        <!-- Desktop Header -->
+        <div class="bringer-header-inner">
+            <!-- Header Logo -->
+            <div class="bringer-header-lp">
+                <a href="./" class="bringer-logo">
+                  <h2 style="font-size:30px;">Tech<span style="color:rgb(78, 119, 253);">Realm</span></h2> 
+                </a>
+            </div>
+            <!-- Main Menu -->
+            <div class="bringer-header-mp">
+                <nav class="bringer-nav">
+                    <ul class="main-menu" data-stagger-appear="fade-down" data-stagger-delay="75">
+                        <li class="current-menu-parent">
+                            <a href="/index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="/about/about.html">About Us</a>
+                        </li>
+                        <li>
+                            <a href="/services/service.html">Our Services</a>
+                        </li>
+                        <li>
+                            <a href="/portfolio/folio.html">Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="/contact/contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Header Button -->
+            <div class="bringer-header-rp">
+                <a href="#tech-services-form" class="bringer-button">Get Tech Services</a>
+            </div>
+        </div>
+        <!-- Mobile Header -->
+        <div class="bringer-mobile-header-inner">
+            <a href="./" class="bringer-logo">
+                <h2 style="font-size:30px;">Tech<span style="color:rgb(78, 119, 253);">Realm</span></h2> 
+            </a>
+            <a href="#" class="bringer-mobile-menu-toggler">
+                <i class="bringer-menu-toggler-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Main -->
+    <main id="bringer-main">
+        <div class="stg-container">
+            <!-- Section: Hero -->
+            <section class="backlight-bottom">
+                <div class="stg-row">
+                    <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
+                        <div class="align-center" style="background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,0) 100%); padding: 40px; border-radius: 10px;">
+                            <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up" id="dynamic-headline">Tech Services for <span id="industry-display">{Industry}</span></h1>
+                            <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">Get expert software development, web development, and technical services tailored for your <span id="industry-display-2">{Industry}</span> business. Professional, reliable, and innovative solutions.</p>
+                            <div style="margin-top: 30px;">
+                                <a href="#tech-services-form" class="bringer-button" style="font-size: 18px; padding: 15px 30px;">Submit Service Request</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Tech Services Form -->
+            <section id="tech-services-form" class="divider-bottom">
+                <div class="stg-row">
+                    <div class="stg-col-10 stg-offset-1 stg-tp-col-12 stg-tp-offset-0">
+                        <div class="tech-support-form">
+                            <h2 class="align-center" style="margin-bottom: 40px; color: rgb(78, 119, 253);">Tech Services Request Form</h2>
+                            
+                            <form id="supportForm">
+                                <!-- Basic Contact Info -->
+                                <div class="form-section">
+                                    <h3>Basic Contact Information</h3>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="fullName">Full Name *</label>
+                                            <input type="text" id="fullName" name="fullName" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email Address *</label>
+                                            <input type="email" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="phone">Phone Number *</label>
+                                            <input type="tel" id="phone" name="phone" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="companyName">Company/Organization Name</label>
+                                            <input type="text" id="companyName" name="companyName">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Service Details -->
+                                <div class="form-section">
+                                    <h3>Service Details</h3>
+                                    <div class="form-group">
+                                        <label>Type of Service Needed *</label>
+                                        <div class="checkbox-group">
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="service1" name="services" value="Web Development">
+                                                <label for="service1">Web Development</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="service2" name="services" value="Software Development">
+                                                <label for="service2">Software Development</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="service3" name="services" value="Mobile App Development">
+                                                <label for="service3">Mobile App Development</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="service4" name="services" value="E-commerce Solutions">
+                                                <label for="service4">E-commerce Solutions</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="service5" name="services" value="API Development">
+                                                <label for="service5">API Development</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="service6" name="services" value="Database Design">
+                                                <label for="service6">Database Design</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="service7" name="services" value="Cloud Solutions">
+                                                <label for="service7">Cloud Solutions</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="service8" name="services" value="IT Consulting">
+                                                <label for="service8">IT Consulting</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="service9" name="services" value="Other">
+                                                <label for="service9">Other</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="otherServiceGroup" style="display: none;">
+                                        <label for="otherService">Please specify other service:</label>
+                                        <input type="text" id="otherService" name="otherService">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Project Description *</label>
+                                        <textarea id="description" name="description" placeholder="Please describe your project requirements, goals, and any specific features you need..." required></textarea>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="urgency">Urgency Level *</label>
+                                            <select id="urgency" name="urgency" required>
+                                                <option value="">Select urgency level</option>
+                                                <option value="Low">Low</option>
+                                                <option value="Medium">Medium</option>
+                                                <option value="High">High</option>
+                                                <option value="Critical">Critical</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contactMethod">Preferred Contact Method *</label>
+                                            <select id="contactMethod" name="contactMethod" required>
+                                                <option value="">Select contact method</option>
+                                                <option value="Email">Email</option>
+                                                <option value="Phone">Phone</option>
+                                                <option value="Video Call">Video Call</option>
+                                                <option value="Chat">Chat</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bestTime">Best Time to Contact</label>
+                                        <input type="text" id="bestTime" name="bestTime" placeholder="e.g., Weekdays 9 AM - 5 PM, or specific date/time">
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="align-center" style="margin-top: 40px;">
+                                    <button type="submit" class="submit-btn">Submit Service Request</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Why Choose Us -->
+            <section class="backlight-top">
+                <div class="stg-row">
+                    <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
+                        <div class="align-center">
+                            <h2 data-appear="fade-up" data-unload="fade-up">Why Choose TechRealm for <span id="industry-display-3">{Industry}</span> Development?</h2>
+                            <div class="stg-row" style="margin-top: 40px;">
+                                <div class="stg-col-4" data-appear="fade-up" data-delay="100">
+                                    <h4 style="color: rgb(78, 119, 253);">Expert Development</h4>
+                                    <p>Professional software and web development with modern technologies</p>
+                                </div>
+                                <div class="stg-col-4" data-appear="fade-up" data-delay="200">
+                                    <h4 style="color: rgb(78, 119, 253);">Industry Expertise</h4>
+                                    <p>Specialized knowledge in <span id="industry-display-4">{Industry}</span> software solutions</p>
+                                </div>
+                                <div class="stg-col-4" data-appear="fade-up" data-delay="300">
+                                    <h4 style="color: rgb(78, 119, 253);">Quality Assurance</h4>
+                                    <p>Thorough testing and quality control for reliable applications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="bringer-footer">
+        <!-- Scripts -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/st-core.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            // Remove loader when page is fully loaded
+            window.addEventListener('load', function() {
+                document.body.classList.add('loaded');
+                
+                // Parse URL parameters for personalization
+                function getUrlParameter(name) {
+                    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                    var results = regex.exec(location.search);
+                    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+                }
+                
+                // Get personalization parameters
+                var industry = getUrlParameter('industry') || 'Business';
+                var employeeDiscount = getUrlParameter('employeeDiscount') || '';
+                
+                // Update industry displays
+                var industryDisplays = document.querySelectorAll('[id^="industry-display"]');
+                industryDisplays.forEach(function(element) {
+                    element.textContent = industry;
+                });
+                
+                                 // Handle "Other" service checkbox
+                 document.getElementById('service9').addEventListener('change', function() {
+                    var otherGroup = document.getElementById('otherServiceGroup');
+                    if (this.checked) {
+                        otherGroup.style.display = 'block';
+                    } else {
+                        otherGroup.style.display = 'none';
+                        document.getElementById('otherService').value = '';
+                    }
+                });
+                
+                // Handle form submission
+                document.getElementById('supportForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    var formData = new FormData(this);
+                    var data = {};
+                    for (var [key, value] of formData.entries()) {
+                        data[key] = value;
+                    }
+                    
+                    // Get selected services
+                    var selectedServices = [];
+                    document.querySelectorAll('input[name="services"]:checked').forEach(function(checkbox) {
+                        if (checkbox.value === 'Other') {
+                            var otherService = document.getElementById('otherService').value;
+                            if (otherService) {
+                                selectedServices.push(otherService);
+                            }
+                        } else {
+                            selectedServices.push(checkbox.value);
+                        }
+                    });
+                    
+                                         // Build WhatsApp message
+                     var message = "Hello, I would like to request tech services. Here are my details:\n\n";
+                    message += "Name: " + data.fullName + "\n";
+                    message += "Email: " + data.email + "\n";
+                    message += "Phone: " + data.phone + "\n";
+                    message += "Company: " + (data.companyName || 'N/A') + "\n";
+                                         message += "Service Needed: " + selectedServices.join(', ') + "\n";
+                     message += "Project Description: " + data.description + "\n";
+                    message += "Urgency Level: " + data.urgency + "\n";
+                    message += "Preferred Contact Method: " + data.contactMethod + "\n";
+                    message += "Best Time to Contact: " + (data.bestTime || 'N/A');
+                    
+                    if (employeeDiscount) {
+                        message += "\nEmployee Discount Code: " + employeeDiscount;
+                    }
+                    
+                    // Encode message for WhatsApp
+                    var encodedMessage = encodeURIComponent(message);
+                    var whatsappUrl = "https://wa.me/923461115757?text=" + encodedMessage;
+                    
+                    // Open WhatsApp
+                    window.open(whatsappUrl, '_blank');
+                });
+            });
+        </script>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/libs.js"></script>
+    <script src="js/contact_form.js"></script>
+    <script src="js/st-core.js"></script>
+    <script src="js/classes.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Loader functionality
+        window.addEventListener('load', function() {
+            // Wait for a short delay to ensure all content is loaded
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 500);
+        });
+
+        // Your existing JavaScript code
+        $(document).ready(function() {
+            // Your existing document ready code
+        });
+    </script>
+</body>
+</html>
