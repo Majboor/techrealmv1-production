@@ -1,0 +1,640 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get an instant, no-obligation ballpark estimate for your web, mobile, or AI project. TechRealm's interactive project estimator gives you a price range and timeline in under a minute.">
+    <meta name="theme-color" content="#4e77fd">
+    <meta name="author" content="TechRealm">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Instant Project Estimator — TechRealm">
+    <meta property="og:description" content="Answer a few questions and get an instant ballpark price range and timeline for your software project.">
+    <meta property="og:image" content="/images/home01-hero.png">
+    <meta property="og:url" content="https://techrealm.online/estimator/estimator.html">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Instant Project Estimator — TechRealm">
+    <meta name="twitter:description" content="Answer a few questions and get an instant ballpark price range and timeline for your software project.">
+    <meta name="twitter:image" content="/images/home01-hero.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7RJPPMXSH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-J7RJPPMXSH');
+    </script>
+
+    <style>
+        #loader-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; background-color: #ffffff; display: flex; justify-content: center; align-items: center; }
+        #loader { border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loaded #loader-wrapper { visibility: hidden; opacity: 0; transition: all 0.3s ease-out; }
+    </style>
+
+    <!-- Page Title -->
+    <title>Instant Project Estimator — TechRealm</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Config -->
+    <link type="text/css" rel="stylesheet" href="/css/config.css">
+    <!-- Libraries -->
+    <link type="text/css" rel="stylesheet" href="/css/libs.css">
+    <!-- Template Styles -->
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+    <!-- Responsive -->
+    <link type="text/css" rel="stylesheet" href="/css/responsive.css">
+
+    <!-- Estimator Styles (self-contained) -->
+    <style>
+        :root { --tr-accent: #4e77fd; --tr-accent-rgb: 78,119,253; }
+        .tr-est { max-width: 1180px; margin: 0 auto; padding: 20px 0 40px; }
+        .tr-est__lead { max-width: 720px; margin: 0 auto 44px; text-align: center; color: rgba(255,255,255,.68); font-size: 18px; line-height: 1.6; }
+        .tr-est__card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 34px 34px 30px; backdrop-filter: blur(6px); }
+        @media (max-width: 640px){ .tr-est__card { padding: 22px 18px; border-radius: 16px; } }
+
+        /* Progress */
+        .tr-est__progress { display: flex; align-items: center; justify-content: space-between; margin-bottom: 34px; gap: 6px; }
+        .tr-est__pstep { flex: 1; text-align: center; position: relative; }
+        .tr-est__pdot { width: 34px; height: 34px; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; background: rgba(255,255,255,.06); color: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.12); transition: all .35s ease; }
+        .tr-est__pstep.is-active .tr-est__pdot { background: var(--tr-accent); color: #fff; border-color: var(--tr-accent); box-shadow: 0 0 0 6px rgba(var(--tr-accent-rgb),.18); }
+        .tr-est__pstep.is-done .tr-est__pdot { background: rgba(var(--tr-accent-rgb),.25); color: #fff; border-color: rgba(var(--tr-accent-rgb),.5); }
+        .tr-est__plabel { font-size: 12.5px; color: rgba(255,255,255,.5); letter-spacing: .02em; }
+        .tr-est__pstep.is-active .tr-est__plabel { color: #fff; }
+        .tr-est__pline { position: absolute; top: 17px; left: 50%; width: 100%; height: 2px; background: rgba(255,255,255,.1); z-index: 0; }
+        .tr-est__pstep:last-child .tr-est__pline { display: none; }
+        .tr-est__pstep.is-done .tr-est__pline { background: rgba(var(--tr-accent-rgb),.5); }
+        .tr-est__pdot, .tr-est__plabel { position: relative; z-index: 1; }
+        @media (max-width: 640px){ .tr-est__plabel { display: none; } }
+
+        /* Steps */
+        .tr-step { display: none; animation: trFade .4s ease; }
+        .tr-step.is-active { display: block; }
+        @keyframes trFade { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: none;} }
+        .tr-step__q { font-size: 24px; font-weight: 600; color: #fff; margin: 0 0 6px; }
+        .tr-step__hint { color: rgba(255,255,255,.55); font-size: 15px; margin: 0 0 26px; }
+
+        /* Option grids */
+        .tr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .tr-grid--2 { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 860px){ .tr-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 520px){ .tr-grid, .tr-grid--2 { grid-template-columns: 1fr; } }
+
+        .tr-opt { position: relative; display: block; cursor: pointer; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.02); border-radius: 14px; padding: 18px 18px; transition: all .2s ease; }
+        .tr-opt:hover { border-color: rgba(var(--tr-accent-rgb),.55); background: rgba(var(--tr-accent-rgb),.06); transform: translateY(-2px); }
+        .tr-opt input { position: absolute; opacity: 0; pointer-events: none; }
+        .tr-opt.is-checked { border-color: var(--tr-accent); background: rgba(var(--tr-accent-rgb),.12); box-shadow: 0 0 0 1px var(--tr-accent) inset; }
+        .tr-opt__ico { font-size: 26px; line-height: 1; margin-bottom: 10px; }
+        .tr-opt__t { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+        .tr-opt__d { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.45; }
+        .tr-opt__check { position: absolute; top: 12px; right: 12px; width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; opacity: 0; transition: opacity .2s; }
+        .tr-opt.is-checked .tr-opt__check { opacity: 1; background: var(--tr-accent); border-color: var(--tr-accent); }
+
+        /* Nav buttons */
+        .tr-est__nav { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; gap: 14px; }
+        .tr-btn { font-family: inherit; font-size: 15px; font-weight: 600; border-radius: 999px; padding: 13px 30px; cursor: pointer; border: 1px solid rgba(255,255,255,.18); background: transparent; color: #fff; transition: all .2s ease; }
+        .tr-btn:hover { border-color: #fff; }
+        .tr-btn--primary { background: var(--tr-accent); border-color: var(--tr-accent); }
+        .tr-btn--primary:hover { background: #3a63e8; border-color: #3a63e8; box-shadow: 0 8px 24px rgba(var(--tr-accent-rgb),.35); }
+        .tr-btn[disabled] { opacity: .4; cursor: not-allowed; }
+        .tr-btn--ghost { border: none; color: rgba(255,255,255,.6); padding-left: 6px; }
+        .tr-btn--ghost:hover { color: #fff; }
+
+        /* Result */
+        .tr-result__badge { display: inline-block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--tr-accent); font-weight: 600; margin-bottom: 10px; }
+        .tr-result__price { font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin: 0 0 6px; }
+        @media (max-width: 520px){ .tr-result__price { font-size: 34px; } }
+        .tr-result__price span { color: rgba(255,255,255,.4); font-size: 22px; }
+        .tr-result__sub { color: rgba(255,255,255,.6); font-size: 15px; margin-bottom: 28px; }
+        .tr-result__cols { display: grid; grid-template-columns: 1.3fr 1fr; gap: 26px; }
+        @media (max-width: 760px){ .tr-result__cols { grid-template-columns: 1fr; } }
+        .tr-break { list-style: none; margin: 0; padding: 0; }
+        .tr-break li { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 0; border-bottom: 1px dashed rgba(255,255,255,.1); font-size: 14.5px; color: rgba(255,255,255,.78); gap: 12px; }
+        .tr-break li span:last-child { color: #fff; font-weight: 600; white-space: nowrap; }
+        .tr-break li.tr-break--total { border-bottom: none; border-top: 2px solid rgba(255,255,255,.18); margin-top: 6px; padding-top: 14px; font-size: 16px; }
+        .tr-meta { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+        .tr-metacard { flex: 1; min-width: 130px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 14px 16px; }
+        .tr-metacard b { display: block; color: #fff; font-size: 20px; margin-bottom: 2px; }
+        .tr-metacard small { color: rgba(255,255,255,.5); font-size: 12.5px; }
+
+        /* Lead form */
+        .tr-lead { background: rgba(var(--tr-accent-rgb),.07); border: 1px solid rgba(var(--tr-accent-rgb),.28); border-radius: 16px; padding: 24px; }
+        .tr-lead h4 { color: #fff; font-size: 18px; margin: 0 0 4px; }
+        .tr-lead p { color: rgba(255,255,255,.6); font-size: 13.5px; margin: 0 0 18px; }
+        .tr-field { margin-bottom: 13px; }
+        .tr-field input, .tr-field textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,.25); border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: 12px 14px; color: #fff; font-family: inherit; font-size: 14.5px; transition: border-color .2s; }
+        .tr-field input:focus, .tr-field textarea:focus { outline: none; border-color: var(--tr-accent); }
+        .tr-field input.tr-invalid { border-color: #ff5c6c; }
+        .tr-lead .tr-btn--primary { width: 100%; margin-top: 4px; }
+        .tr-lead__alt { text-align: center; margin-top: 12px; font-size: 13px; color: rgba(255,255,255,.5); }
+        .tr-lead__alt a { color: var(--tr-accent); text-decoration: none; }
+        .tr-disclaimer { text-align: center; color: rgba(255,255,255,.4); font-size: 12.5px; margin-top: 26px; max-width: 640px; margin-left: auto; margin-right: auto; line-height: 1.55; }
+    </style>
+</head>
+
+<body>
+    <div id="loader-wrapper"><div id="loader"></div></div>
+
+    <!-- Header -->
+    <header id="bringer-header" class="is-frosted is-sticky" data-appear="fade-down" data-unload="fade-up">
+        <div class="bringer-header-inner">
+            <div class="bringer-header-lp">
+                <a href="/" class="bringer-logo">
+                    <h2 style="font-size:30px;">Tech<span style="color:rgb(78, 119, 253);">Realm</span></h2>
+                </a>
+            </div>
+            <div class="bringer-header-mp">
+                <nav class="bringer-nav">
+                    <ul class="main-menu" data-stagger-appear="fade-down" data-stagger-delay="75">
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/about/about.html">About Us</a></li>
+                        <li><a href="/services/service.html">Our Services</a></li>
+                        <li><a href="/portfolio/folio.html">Portfolio</a></li>
+                        <li class="current-menu-parent"><a href="/estimator/estimator.html">Estimate</a></li>
+                        <li><a href="/contact/contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="bringer-header-rp">
+                <a href="https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21" class="bringer-button">Book a Demo</a>
+            </div>
+        </div>
+        <div class="bringer-mobile-header-inner">
+            <a href="/" class="bringer-logo">
+                <h2 style="font-size:30px;">Tech<span style="color:rgb(78, 119, 253);">Realm</span></h2>
+            </a>
+            <a href="#" class="bringer-mobile-menu-toggler">
+                <i class="bringer-menu-toggler-icon"><span></span><span></span><span></span></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Main -->
+    <main id="bringer-main">
+        <div class="stg-container">
+            <section class="bringer-section">
+                <div class="align-center" style="margin-bottom: 8px;">
+                    <span class="bringer-label" data-appear="fade-up">Instant Estimate</span>
+                    <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">Project Cost Estimator</h1>
+                </div>
+
+                <div class="tr-est">
+                    <p class="tr-est__lead" data-appear="fade-up">
+                        Answer a few quick questions and get a transparent, no-obligation ballpark
+                        price range and timeline for your project &mdash; in under a minute. No email wall
+                        until you want to talk.
+                    </p>
+
+                    <div class="tr-est__card" data-appear="fade-up" id="tr-est-app">
+                        <!-- Progress -->
+                        <div class="tr-est__progress" id="tr-progress">
+                            <div class="tr-est__pstep" data-step="0"><span class="tr-est__pline"></span><div class="tr-est__pdot">1</div><div class="tr-est__plabel">Project</div></div>
+                            <div class="tr-est__pstep" data-step="1"><span class="tr-est__pline"></span><div class="tr-est__pdot">2</div><div class="tr-est__plabel">Scope</div></div>
+                            <div class="tr-est__pstep" data-step="2"><span class="tr-est__pline"></span><div class="tr-est__pdot">3</div><div class="tr-est__plabel">Features</div></div>
+                            <div class="tr-est__pstep" data-step="3"><span class="tr-est__pline"></span><div class="tr-est__pdot">4</div><div class="tr-est__plabel">Delivery</div></div>
+                            <div class="tr-est__pstep" data-step="4"><div class="tr-est__pdot">5</div><div class="tr-est__plabel">Estimate</div></div>
+                        </div>
+
+                        <!-- Step 1: Project type -->
+                        <div class="tr-step" data-step="0">
+                            <h3 class="tr-step__q">What are you building?</h3>
+                            <p class="tr-step__hint">Pick the option closest to your idea.</p>
+                            <div class="tr-grid" data-single="type">
+                                <label class="tr-opt"><input type="radio" name="type" value="website"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#127760;</div><div class="tr-opt__t">Marketing Website</div><div class="tr-opt__d">Brochure, landing, or company site</div></label>
+                                <label class="tr-opt"><input type="radio" name="type" value="webapp"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128421;&#65039;</div><div class="tr-opt__t">Web App / SaaS</div><div class="tr-opt__d">Dashboards, portals, tools</div></label>
+                                <label class="tr-opt"><input type="radio" name="type" value="mobile"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128241;</div><div class="tr-opt__t">Mobile App</div><div class="tr-opt__d">iOS / Android native or cross-platform</div></label>
+                                <label class="tr-opt"><input type="radio" name="type" value="ecommerce"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128722;</div><div class="tr-opt__t">E-commerce Store</div><div class="tr-opt__d">Catalog, cart, checkout, payments</div></label>
+                                <label class="tr-opt"><input type="radio" name="type" value="ai"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#129302;</div><div class="tr-opt__t">AI Product</div><div class="tr-opt__d">Chatbots, agents, ML features</div></label>
+                                <label class="tr-opt"><input type="radio" name="type" value="custom"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#9881;&#65039;</div><div class="tr-opt__t">Something Custom</div><div class="tr-opt__d">Not sure yet? Start here</div></label>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Scope -->
+                        <div class="tr-step" data-step="1">
+                            <h3 class="tr-step__q">How big is it?</h3>
+                            <p class="tr-step__hint">A rough sense of size is all we need.</p>
+                            <div class="tr-grid" data-single="scope">
+                                <label class="tr-opt"><input type="radio" name="scope" value="small"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#127793;</div><div class="tr-opt__t">Starter</div><div class="tr-opt__d">A few pages / core screens, MVP</div></label>
+                                <label class="tr-opt"><input type="radio" name="scope" value="medium"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#127794;</div><div class="tr-opt__t">Standard</div><div class="tr-opt__d">Multiple sections & user flows</div></label>
+                                <label class="tr-opt"><input type="radio" name="scope" value="large"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#127796;</div><div class="tr-opt__t">Advanced</div><div class="tr-opt__d">Rich, multi-module platform</div></label>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Features -->
+                        <div class="tr-step" data-step="2">
+                            <h3 class="tr-step__q">Which features do you need?</h3>
+                            <p class="tr-step__hint">Select all that apply &mdash; you can add more later.</p>
+                            <div class="tr-grid" data-multi="features">
+                                <label class="tr-opt"><input type="checkbox" name="features" value="auth" data-price="2500" data-label="User accounts & login"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128273;</div><div class="tr-opt__t">User Accounts</div><div class="tr-opt__d">Sign-up, login, roles</div></label>
+                                <label class="tr-opt"><input type="checkbox" name="features" value="payments" data-price="3500" data-label="Payments & checkout"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128179;</div><div class="tr-opt__t">Payments</div><div class="tr-opt__d">Stripe / subscriptions</div></label>
+                                <label class="tr-opt"><input type="checkbox" name="features" value="admin" data-price="3000" data-label="Admin dashboard"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128202;</div><div class="tr-opt__t">Admin Dashboard</div><div class="tr-opt__d">Manage content & users</div></label>
+                                <label class="tr-opt"><input type="checkbox" name="features" value="ai" data-price="5000" data-label="AI / ML features"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#10024;</div><div class="tr-opt__t">AI Features</div><div class="tr-opt__d">Chat, recommendations, automation</div></label>
+                                <label class="tr-opt"><input type="checkbox" name="features" value="integrations" data-price="2500" data-label="3rd-party integrations"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128279;</div><div class="tr-opt__t">Integrations</div><div class="tr-opt__d">CRMs, APIs, webhooks</div></label>
+                                <label class="tr-opt"><input type="checkbox" name="features" value="realtime" data-price="3000" data-label="Real-time / chat"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#9889;</div><div class="tr-opt__t">Real-time</div><div class="tr-opt__d">Live chat, notifications</div></label>
+                                <label class="tr-opt"><input type="checkbox" name="features" value="cms" data-price="2000" data-label="CMS / blog"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128221;</div><div class="tr-opt__t">CMS / Blog</div><div class="tr-opt__d">Editable content</div></label>
+                                <label class="tr-opt"><input type="checkbox" name="features" value="multilang" data-price="1800" data-label="Multi-language"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#127760;</div><div class="tr-opt__t">Multi-language</div><div class="tr-opt__d">Localization support</div></label>
+                                <label class="tr-opt"><input type="checkbox" name="features" value="analytics" data-price="1500" data-label="Analytics & reporting"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128200;</div><div class="tr-opt__t">Analytics</div><div class="tr-opt__d">Dashboards & reports</div></label>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Delivery -->
+                        <div class="tr-step" data-step="3">
+                            <h3 class="tr-step__q">Design &amp; timeline</h3>
+                            <p class="tr-step__hint">These shape the final polish and pace.</p>
+                            <div style="margin-bottom:22px;">
+                                <div class="tr-opt__t" style="margin-bottom:12px;">Design approach</div>
+                                <div class="tr-grid" data-single="design">
+                                    <label class="tr-opt"><input type="radio" name="design" value="template"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#129521;</div><div class="tr-opt__t">Template-based</div><div class="tr-opt__d">Fast, budget-friendly</div></label>
+                                    <label class="tr-opt"><input type="radio" name="design" value="custom"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#127912;</div><div class="tr-opt__t">Custom Design</div><div class="tr-opt__d">Bespoke UI/UX</div></label>
+                                    <label class="tr-opt"><input type="radio" name="design" value="premium"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128142;</div><div class="tr-opt__t">Premium + Motion</div><div class="tr-opt__d">Animations & brand system</div></label>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="tr-opt__t" style="margin-bottom:12px;">Timeline</div>
+                                <div class="tr-grid" data-single="timeline">
+                                    <label class="tr-opt"><input type="radio" name="timeline" value="flexible"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#129528;</div><div class="tr-opt__t">Flexible</div><div class="tr-opt__d">Best value</div></label>
+                                    <label class="tr-opt"><input type="radio" name="timeline" value="standard"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128197;</div><div class="tr-opt__t">Standard</div><div class="tr-opt__d">Normal pace</div></label>
+                                    <label class="tr-opt"><input type="radio" name="timeline" value="rush"><span class="tr-opt__check">&#10003;</span><div class="tr-opt__ico">&#128640;</div><div class="tr-opt__t">Rush</div><div class="tr-opt__d">Expedited delivery</div></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Result -->
+                        <div class="tr-step" data-step="4">
+                            <div class="tr-result__cols">
+                                <div>
+                                    <span class="tr-result__badge">Your Ballpark Estimate</span>
+                                    <h3 class="tr-result__price" id="tr-price">&mdash;</h3>
+                                    <p class="tr-result__sub" id="tr-price-sub">Estimated project investment range</p>
+                                    <ul class="tr-break" id="tr-breakdown"></ul>
+                                    <div class="tr-meta">
+                                        <div class="tr-metacard"><b id="tr-timeline">&mdash;</b><small>Estimated timeline</small></div>
+                                        <div class="tr-metacard"><b id="tr-confidence">&mdash;</b><small>Estimate confidence</small></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="tr-lead">
+                                        <h4>Get this as a detailed quote</h4>
+                                        <p>We'll refine these numbers into a proper proposal &mdash; free, no pressure.</p>
+                                        <form id="tr-lead-form" novalidate>
+                                            <div class="tr-field"><input type="text" id="tr-name" name="name" placeholder="Your name" autocomplete="name"></div>
+                                            <div class="tr-field"><input type="email" id="tr-email" name="email" placeholder="Email address" autocomplete="email"></div>
+                                            <div class="tr-field"><textarea id="tr-notes" name="notes" rows="2" placeholder="Anything else? (optional)"></textarea></div>
+                                            <button type="submit" class="tr-btn tr-btn--primary">Send my estimate &amp; request a quote</button>
+                                        </form>
+                                        <div class="tr-lead__alt">or <a href="https://wa.me/923461115757" id="tr-wa" target="_blank" rel="noopener">chat with us on WhatsApp</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="tr-disclaimer">
+                                This is an automated, indicative estimate to help you plan &mdash; not a formal quote.
+                                Final pricing depends on detailed requirements. Your inputs stay in your browser until you choose to send them.
+                            </p>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="tr-est__nav">
+                            <button type="button" class="tr-btn tr-btn--ghost" id="tr-back" style="visibility:hidden;">&larr; Back</button>
+                            <button type="button" class="tr-btn tr-btn--primary" id="tr-next" disabled>Next &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div><!-- .stg-container -->
+
+        <!-- Footer -->
+        <footer id="bringer-footer" data-appear="fade-up" data-unload="fade-down">
+            <div class="bringer-footer-widgets">
+                <div class="stg-container">
+                    <div class="stg-row" data-stagger-appear="fade-left" data-stagger-delay="100">
+                        <div class="stg-col-5 stg-tp-col-12 stg-tp-bottom-gap-l">
+                            <div class="bringer-info-widget">
+                                <a href="/" class="bringer-logo footer-logo">
+                                    <h2 style="font-size:30px;">Tech<span style="color:rgb(78, 119, 253);">Realm</span></h2>
+                                </a>
+                                <div class="bringer-info-description">At TechRealm, we are a passionate team of developers and designers who harness creativity to build powerful digital experiences. We help innovators establish a strong online presence that showcases their work and tells their unique story.</div>
+                                <span class="bringer-label">Email us:<br><span style="text-transform: none;">Info@techrealm.online</span></span>
+                                <span class="bringer-label">Contact us:<br><span style="text-transform: none;">+1 (917) 640 - 9656</span></span>
+                            </div>
+                        </div>
+                        <div class="stg-col-2 stg-offset-1 stg-tp-col-4 stg-m-col-4">
+                            <div class="bringer-widget">
+                                <h6>Services</h6>
+                                <div class="bringer-menu-widget">
+                                    <ul>
+                                        <li><a href="/services/service.html">Software Development</a></li>
+                                        <li><a href="/services/service.html">AI Development</a></li>
+                                        <li><a href="/services/service.html">Digital Marketing</a></li>
+                                        <li><a href="/services/service.html">Ecommerce integration</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stg-col-2 stg-tp-col-4 stg-m-col-4">
+                            <div class="bringer-widget">
+                                <h6>Company</h6>
+                                <div class="bringer-menu-widget">
+                                    <ul>
+                                        <li><a href="/about/about.html">About Us</a></li>
+                                        <li><a href="/portfolio/folio.html">Portfolio</a></li>
+                                        <li><a href="/contact/contact.html">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stg-col-2 stg-tp-col-4 stg-m-col-4">
+                            <div class="bringer-widget">
+                                <h6>Resources</h6>
+                                <div class="bringer-menu-widget">
+                                    <ul>
+                                        <li><a href="/estimator/estimator.html">Project Estimator</a></li>
+                                        <li><a href="/contact/contact.html">Help Center</a></li>
+                                        <li><a href="/services/service.html">Our Services</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bringer-footer-line stg-container" id="footer-copyright">
+                <div class="align-center">Copyright TechRealm© 2024. All Rights Reserved.</div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Dynamic Backlight -->
+    <div class="bringer-backlight"></div>
+
+    <!-- JS Scripts -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/libs.js"></script>
+    <script src="/js/st-core.js"></script>
+    <script src="/js/classes.js"></script>
+    <script src="/js/main.js"></script>
+
+    <!-- Estimator Logic (self-contained, vanilla) -->
+    <script>
+    (function () {
+        "use strict";
+        var CURRENCY = "$";
+        // Base price ranges (low) per project type in USD
+        var BASE = {
+            website:   { base: 2500,  weeks: 3,  label: "Marketing Website" },
+            webapp:    { base: 9000,  weeks: 8,  label: "Web App / SaaS" },
+            mobile:    { base: 12000, weeks: 10, label: "Mobile App" },
+            ecommerce: { base: 6000,  weeks: 6,  label: "E-commerce Store" },
+            ai:        { base: 14000, weeks: 10, label: "AI Product" },
+            custom:    { base: 8000,  weeks: 7,  label: "Custom Project" }
+        };
+        var SCOPE   = { small:  { m: 1.0,  w: 0.7, label: "Starter" },
+                        medium: { m: 1.7,  w: 1.0, label: "Standard" },
+                        large:  { m: 2.8,  w: 1.6, label: "Advanced" } };
+        var DESIGN  = { template: { m: 1.0,  w: 1.0, label: "Template-based" },
+                        custom:   { m: 1.25, w: 1.15, label: "Custom Design" },
+                        premium:  { m: 1.5,  w: 1.3, label: "Premium + Motion" } };
+        var TIME    = { flexible: { m: 0.92, w: 1.2, label: "Flexible" },
+                        standard: { m: 1.0,  w: 1.0, label: "Standard" },
+                        rush:     { m: 1.35, w: 0.7, label: "Rush" } };
+
+        var state = { type: null, scope: null, features: [], design: null, timeline: null, result: null };
+        var STEP_COUNT = 5;
+        var current = 0;
+
+        var $ = function (s, c) { return (c || document).querySelector(s); };
+        var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+        var steps = $$(".tr-step");
+        var pSteps = $$(".tr-est__pstep");
+        var backBtn = $("#tr-back");
+        var nextBtn = $("#tr-next");
+
+        function fmt(n) {
+            return CURRENCY + Math.round(n).toLocaleString("en-US");
+        }
+
+        // ---- Selection handling ----
+        $$(".tr-opt input").forEach(function (input) {
+            input.addEventListener("change", function () {
+                var label = input.closest(".tr-opt");
+                if (input.type === "radio") {
+                    var group = input.closest("[data-single]");
+                    $$(".tr-opt", group).forEach(function (o) { o.classList.remove("is-checked"); });
+                    label.classList.add("is-checked");
+                    state[input.name] = input.value;
+                } else {
+                    if (input.checked) {
+                        label.classList.add("is-checked");
+                        if (state.features.indexOf(input.value) === -1) state.features.push(input.value);
+                    } else {
+                        label.classList.remove("is-checked");
+                        state.features = state.features.filter(function (v) { return v !== input.value; });
+                    }
+                }
+                updateNav();
+            });
+        });
+
+        // Whole-card click already works via <label>. Nothing extra needed.
+
+        function stepValid(i) {
+            switch (i) {
+                case 0: return !!state.type;
+                case 1: return !!state.scope;
+                case 2: return true; // features optional
+                case 3: return !!state.design && !!state.timeline;
+                case 4: return true;
+                default: return false;
+            }
+        }
+
+        function updateNav() {
+            backBtn.style.visibility = current === 0 ? "hidden" : "visible";
+            if (current === STEP_COUNT - 1) {
+                nextBtn.style.display = "none";
+            } else {
+                nextBtn.style.display = "";
+                nextBtn.disabled = !stepValid(current);
+                nextBtn.innerHTML = current === STEP_COUNT - 2 ? "See my estimate &rarr;" : "Next &rarr;";
+            }
+        }
+
+        function renderProgress() {
+            pSteps.forEach(function (p, i) {
+                p.classList.toggle("is-active", i === current);
+                p.classList.toggle("is-done", i < current);
+            });
+        }
+
+        function goTo(i) {
+            if (i < 0 || i > STEP_COUNT - 1) return;
+            current = i;
+            steps.forEach(function (s, idx) { s.classList.toggle("is-active", idx === current); });
+            renderProgress();
+            updateNav();
+            if (current === STEP_COUNT - 1) computeResult();
+            var card = $("#tr-est-app");
+            if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        nextBtn.addEventListener("click", function () {
+            if (!stepValid(current)) return;
+            goTo(current + 1);
+        });
+        backBtn.addEventListener("click", function () { goTo(current - 1); });
+
+        // ---- Estimate computation ----
+        function computeResult() {
+            var t = BASE[state.type] || BASE.custom;
+            var sc = SCOPE[state.scope] || SCOPE.medium;
+            var dz = DESIGN[state.design] || DESIGN.template;
+            var tm = TIME[state.timeline] || TIME.standard;
+
+            var baseCost = t.base * sc.m;
+            var featureCost = 0;
+            var featureLines = [];
+            $$('input[name="features"]:checked').forEach(function (f) {
+                var p = parseInt(f.getAttribute("data-price"), 10) || 0;
+                // features scale gently with scope
+                var scaled = p * (0.8 + 0.2 * sc.m);
+                featureCost += scaled;
+                featureLines.push({ label: f.getAttribute("data-label"), value: scaled });
+            });
+
+            var subtotal = (baseCost + featureCost) * dz.m * tm.m;
+
+            // range +/- ~18%
+            var low = subtotal * 0.85;
+            var high = subtotal * 1.18;
+
+            // timeline in weeks
+            var weeks = t.weeks * sc.w * dz.w * tm.w;
+            var wLow = Math.max(1, Math.round(weeks * 0.85));
+            var wHigh = Math.max(wLow + 1, Math.round(weeks * 1.2));
+
+            state.result = { low: low, high: high, subtotal: subtotal, wLow: wLow, wHigh: wHigh,
+                             baseCost: baseCost * dz.m * tm.m, featureLines: featureLines,
+                             typeLabel: t.label, scopeLabel: sc.label, designLabel: dz.label, timeLabel: tm.label,
+                             dz: dz.m, tm: tm.m };
+
+            $("#tr-price").innerHTML = fmt(low) + " <span>&ndash;</span> " + fmt(high);
+            $("#tr-price-sub").textContent = t.label + " · " + sc.label + " scope · " + dz.label;
+
+            var bd = $("#tr-breakdown");
+            bd.innerHTML = "";
+            addLine(bd, "Core build (" + t.label + ", " + sc.label + ")", fmt(baseCost * dz.m * tm.m));
+            state.result.featureLines.forEach(function (fl) {
+                addLine(bd, fl.label, fmt(fl.value * state.result.dz * state.result.tm));
+            });
+            if (dz.m > 1) addLine(bd, dz.label + " (design uplift)", "included");
+            if (tm.m !== 1) addLine(bd, tm.label + " timeline", tm.m > 1 ? "+" + Math.round((tm.m - 1) * 100) + "%" : "&minus;" + Math.round((1 - tm.m) * 100) + "%");
+            var totalLi = document.createElement("li");
+            totalLi.className = "tr-break--total";
+            totalLi.innerHTML = "<span>Estimated range</span><span>" + fmt(low) + " &ndash; " + fmt(high) + "</span>";
+            bd.appendChild(totalLi);
+
+            $("#tr-timeline").textContent = wLow + "–" + wHigh + " wks";
+            $("#tr-confidence").textContent = state.features.length >= 2 ? "High" : "Medium";
+
+            // Prefill WhatsApp link
+            $("#tr-wa").href = "https://wa.me/923461115757?text=" + encodeURIComponent(buildMessage());
+        }
+
+        function addLine(ul, label, value) {
+            var li = document.createElement("li");
+            li.innerHTML = "<span>" + label + "</span><span>" + value + "</span>";
+            ul.appendChild(li);
+        }
+
+        function buildMessage(name, email, notes) {
+            var r = state.result || {};
+            var feats = state.features.length
+                ? $$('input[name="features"]:checked').map(function (f) { return f.getAttribute("data-label"); }).join(", ")
+                : "None selected";
+            var lines = [
+                "Hi TechRealm! I just used your project estimator.",
+                "",
+                (name ? "Name: " + name : ""),
+                (email ? "Email: " + email : ""),
+                "Project: " + (r.typeLabel || ""),
+                "Scope: " + (r.scopeLabel || ""),
+                "Design: " + (r.designLabel || ""),
+                "Timeline: " + (r.timeLabel || "") + " (" + r.wLow + "-" + r.wHigh + " weeks)",
+                "Features: " + feats,
+                "Estimated range: " + fmt(r.low) + " - " + fmt(r.high),
+                (notes ? "Notes: " + notes : ""),
+                "",
+                "I'd like a detailed quote."
+            ];
+            return lines.filter(function (l) { return l !== ""; }).join("\n");
+        }
+
+        // ---- Lead form ----
+        var leadForm = $("#tr-lead-form");
+        leadForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var name = $("#tr-name");
+            var email = $("#tr-email");
+            var notes = $("#tr-notes").value.trim();
+            var ok = true;
+            name.classList.remove("tr-invalid");
+            email.classList.remove("tr-invalid");
+            if (!name.value.trim()) { name.classList.add("tr-invalid"); ok = false; }
+            var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRe.test(email.value.trim())) { email.classList.add("tr-invalid"); ok = false; }
+            if (!ok) return;
+
+            if (typeof gtag === "function") {
+                gtag("event", "estimate_lead", {
+                    project_type: state.type, scope: state.scope,
+                    est_low: state.result ? Math.round(state.result.low) : 0,
+                    est_high: state.result ? Math.round(state.result.high) : 0
+                });
+            }
+
+            // Open a prefilled email to the studio + WhatsApp fallback.
+            var subject = "Quote request — " + (state.result ? state.result.typeLabel : "Project") +
+                          " (" + (state.result ? fmt(state.result.low) + "-" + fmt(state.result.high) : "") + ")";
+            var body = buildMessage(name.value.trim(), email.value.trim(), notes);
+            var mailto = "mailto:Info@techrealm.online?subject=" + encodeURIComponent(subject) +
+                         "&body=" + encodeURIComponent(body);
+
+            var btn = leadForm.querySelector("button");
+            btn.textContent = "Opening your email…";
+            btn.disabled = true;
+
+            // Update WhatsApp link with the same details.
+            $("#tr-wa").href = "https://wa.me/923461115757?text=" + encodeURIComponent(body);
+
+            window.location.href = mailto;
+
+            setTimeout(function () {
+                leadForm.innerHTML =
+                    '<div style="text-align:center;padding:6px 0;">' +
+                    '<div style="font-size:34px;margin-bottom:8px;">&#10024;</div>' +
+                    '<h4 style="color:#fff;margin:0 0 6px;">Thanks, ' + escapeHtml(name.value.trim().split(" ")[0]) + '!</h4>' +
+                    '<p style="color:rgba(255,255,255,.65);font-size:14px;margin:0 0 14px;">Your email draft is ready to send. Prefer to chat now?</p>' +
+                    '<a href="' + $("#tr-wa").href + '" target="_blank" rel="noopener" class="tr-btn tr-btn--primary" style="display:inline-block;text-decoration:none;">Continue on WhatsApp</a>' +
+                    '</div>';
+            }, 700);
+        });
+
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, function (c) {
+                return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+            });
+        }
+
+        // init
+        steps.forEach(function (s, idx) { s.classList.toggle("is-active", idx === 0); });
+        renderProgress();
+        updateNav();
+
+        // Loader
+        window.addEventListener("load", function () {
+            setTimeout(function () { document.body.classList.add("loaded"); }, 400);
+        });
+    })();
+    </script>
+</body></html>
