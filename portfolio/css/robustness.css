@@ -1,0 +1,129 @@
+/**
+ * robustness.css — TechRealm
+ * Additive hardening for mobile / tablet / touch / accessibility edge cases.
+ * Loaded LAST so it can override theme defaults. No visual redesign — these
+ * rules only kick in at small viewports, on touch devices, or for users who
+ * ask for reduced motion. Verified at 390 / 768 / 1280.
+ */
+
+/* --- 1. Stop iOS from auto-inflating text after orientation change --- */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* --- 2. Long unbreakable strings (URLs, emails, hashes) must never
+        force a horizontal scrollbar on narrow screens --- */
+body {
+    overflow-wrap: break-word;
+}
+a[href^="mailto:"],
+a[href^="tel:"],
+.bringer-contact-item a,
+.bringer-menu-widget a,
+p, li, dd, td, blockquote, figcaption {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* --- 3. Safety net so a stray oversized asset can't blow out the layout --- */
+img, svg, video, canvas {
+    max-width: 100%;
+}
+iframe {
+    max-width: 100%;
+}
+
+/* --- 4. Smoother, more reliable touch interactions ---
+        removes the grey tap flash + 300ms delay and blocks accidental
+        double-tap zoom on interactive controls. */
+a, button, [role="button"],
+input[type="submit"], input[type="button"],
+.bringer-button, .bringer-mobile-menu-toggler,
+.swiper-pagination-bullet, label {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    touch-action: manipulation;
+}
+
+/* --- 5. iOS zooms the whole page when a focused field's text is < 16px.
+        Bump form fields to 16px on phones only (design unchanged on desktop). */
+@media only screen and (max-width: 767px) {
+    input,
+    textarea,
+    select {
+        font-size: 16px;
+    }
+    /* Keep the submit control a comfortable, thumb-friendly target. */
+    form button[type="submit"],
+    .bringer-form button {
+        min-height: 44px;
+    }
+}
+
+/* --- 6. Enlarge tiny carousel pagination dots' TAP area on touch devices
+        without changing how they look (invisible padded hit-zone). --- */
+@media (pointer: coarse) {
+    .swiper-pagination-bullet {
+        position: relative;
+    }
+    .swiper-pagination-bullet::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 32px;
+        height: 32px;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* --- 7. Respect users who ask for reduced motion. The site leans on scroll
+        reveals + parallax; honour the OS setting and, crucially, GUARANTEE
+        content is visible even if a reveal never fires. --- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    html {
+        scroll-behavior: auto !important;
+    }
+    /* Elements that start hidden and rely on JS reveal animations:
+       force them fully visible so nothing stays blank. */
+    [data-appear],
+    [data-unload],
+    [data-split-appear],
+    [data-stagger-appear],
+    [data-parallax] {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+    }
+}
+
+/* --- 8. Belt-and-suspenders: reinforce that nothing scrolls the page
+        sideways. `clip` on the root doesn't create a scroll container, so
+        the sticky/fixed header keeps working. --- */
+html {
+    overflow-x: clip;
+}
+
+/* --- 9. Primary call-to-action buttons must also meet the 44px touch
+        target on phones/tablets (the theme renders them ~43px). --- */
+@media (max-width: 960px) {
+    .bringer-button,
+    a.bringer-button {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .bringer-mobile-menu-toggler {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}

@@ -1,0 +1,107 @@
+/* =======================================================================
+   TechRealm — Accessibility & motion-safety layer
+   Additive, low-specificity enhancements. Loaded last so it can safely
+   override template defaults for a11y-critical concerns only.
+   ======================================================================= */
+
+/* --- Screen-reader-only utility -------------------------------------- */
+.sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* --- Skip link ------------------------------------------------------- */
+.skip-link {
+    position: fixed;
+    top: -100px;
+    left: 16px;
+    z-index: 100000;
+    padding: 12px 20px;
+    background: #4e77fd;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    transition: top 0.2s ease-out;
+}
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+/* --- Visible keyboard focus ------------------------------------------
+   Only for keyboard users (:focus-visible), so mouse clicks stay clean. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible,
+.bringer-button:focus-visible,
+.bringer-square-button:focus-visible,
+.bringer-mobile-menu-toggler:focus-visible {
+    outline: 3px solid #4e77fd;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* Ensure the outline is never clipped away by overflow containers on
+   interactive controls. */
+.bringer-button:focus-visible,
+.bringer-square-button:focus-visible {
+    outline-offset: 4px;
+}
+
+/* --- Reduced-motion safety ------------------------------------------
+   Respect the OS "reduce motion" preference. Crucially, the template
+   hides every [data-appear] element at opacity:0 until JS reveals it on
+   scroll. For motion-sensitive users (and as a no-JS fallback) we force
+   that content permanently visible and strip transforms/transitions so
+   nothing animates and nothing can get stuck invisible. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    [data-appear],
+    [data-split-appear],
+    [data-stagger-appear],
+    [data-appear*='fade-'],
+    [data-appear*='zoom-'] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    [data-split-appear] .line,
+    [data-split-appear].bringer-line-overflow:not(.is-done) .line {
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    /* Neutralise the loader spinner + parallax motion */
+    #loader {
+        animation: none !important;
+    }
+    .bringer-parallax-media img,
+    .bringer-masked-media img {
+        transform: none !important;
+    }
+}

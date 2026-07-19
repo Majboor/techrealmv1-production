@@ -1,0 +1,292 @@
+/* ===========================================================================
+   TechRealm — UI Enhancement Layer  (enhance.css)
+   Purely additive polish on top of the Bringer base. Loaded LAST so these
+   refinements win the cascade. Everything below re-uses the existing design
+   tokens in config.css (--bringer-s-accent, --bringer-s-heading, …) so the
+   brand stays perfectly consistent. Safe to remove without breaking the site.
+   =========================================================================== */
+
+:root {
+    --tr-accent: var(--bringer-s-accent, #3F6EE9);
+    --tr-accent-bright: var(--bringer-s-text-accent, #5C9DFF);
+    --tr-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --tr-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --tr-glow: 0 0 0 1px var(--bringer-s-border-accent, #5C9DFF80),
+               0 18px 44px -18px rgba(63, 110, 233, 0.55);
+}
+
+/* --- Nicer text selection -------------------------------------------------- */
+::selection {
+    background: var(--tr-accent-bright);
+    color: #07090D;
+}
+
+/* --- Accessible focus ring (keyboard only) --------------------------------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible,
+.bringer-button:focus-visible {
+    outline: 2px solid var(--tr-accent-bright);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) { outline: none; }
+
+/* --- Buttery-smooth scroll behaviour --------------------------------------- */
+html { scroll-behavior: smooth; }
+
+/* ===========================================================================
+   Scroll progress bar  (populated by enhance.js)
+   =========================================================================== */
+#tr-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    z-index: 100000;
+    pointer-events: none;
+    background: linear-gradient(90deg, var(--tr-accent), var(--tr-accent-bright));
+    box-shadow: 0 0 12px var(--tr-accent-bright);
+    transition: width 0.08s linear;
+    will-change: width;
+}
+
+/* ===========================================================================
+   Buttons — subtle lift + animated sheen
+   =========================================================================== */
+.bringer-button {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s var(--tr-ease),
+                box-shadow 0.35s var(--tr-ease),
+                background-color 0.25s ease;
+    isolation: isolate;
+}
+.bringer-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.22) 50%, transparent 80%);
+    transform: translateX(-130%);
+    transition: transform 0.7s var(--tr-ease-out);
+}
+.bringer-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--tr-glow);
+}
+.bringer-button:hover::after { transform: translateX(130%); }
+.bringer-button:active { transform: translateY(0) scale(0.985); }
+
+/* Ripple (spawned by enhance.js) */
+.tr-ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    background: rgba(255, 255, 255, 0.35);
+    pointer-events: none;
+    animation: tr-ripple 0.6s var(--tr-ease-out) forwards;
+    z-index: 0;
+}
+@keyframes tr-ripple { to { transform: scale(2.6); opacity: 0; } }
+
+/* ===========================================================================
+   Nav links — animated underline reveal
+   =========================================================================== */
+.bringer-nav .main-menu > li > a {
+    position: relative;
+}
+.bringer-nav .main-menu > li > a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--tr-accent), var(--tr-accent-bright));
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s var(--tr-ease);
+}
+.bringer-nav .main-menu > li > a:hover::after,
+.bringer-nav .main-menu > li.current-menu-parent > a::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* ===========================================================================
+   Cards — gentle elevation + image zoom on hover
+   =========================================================================== */
+.bringer-portfolio-card {
+    transition: transform 0.5s var(--tr-ease), box-shadow 0.5s var(--tr-ease);
+    will-change: transform;
+}
+.bringer-portfolio-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.65),
+                0 0 0 1px var(--bringer-s-border-highlight, #F5F7FA40);
+}
+.bringer-portfolio-card-image {
+    overflow: hidden;
+}
+.bringer-portfolio-card-image img {
+    transition: transform 0.7s var(--tr-ease-out);
+    will-change: transform;
+}
+.bringer-portfolio-card:hover .bringer-portfolio-card-image img {
+    transform: scale(1.045);
+}
+
+/* Detailed-list (service) buttons — arrow nudge */
+.bringer-detailed-list-button,
+.bringer-icon-explore {
+    transition: transform 0.35s var(--tr-ease), color 0.25s ease;
+}
+.bringer-detailed-list-title:hover .bringer-icon-explore,
+.bringer-detailed-list-button:hover .bringer-icon-explore {
+    transform: translateX(5px);
+}
+
+/* ===========================================================================
+   Loader — replace the plain blue spinner with a branded dual-ring
+   =========================================================================== */
+#loader {
+    border: 4px solid rgba(92, 157, 255, 0.15) !important;
+    border-top-color: var(--tr-accent-bright) !important;
+    border-right-color: var(--tr-accent) !important;
+    width: 54px !important;
+    height: 54px !important;
+    box-shadow: 0 0 30px -6px var(--tr-accent);
+}
+#loader-wrapper {
+    background: radial-gradient(circle at 50% 42%, #10131b 0%, #07090D 70%) !important;
+}
+#loader-wrapper::after {
+    content: "TechRealm";
+    position: absolute;
+    top: calc(50% + 56px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--bringer-s-heading-fade, #F5F7FAC0);
+    animation: tr-pulse 1.6s ease-in-out infinite;
+}
+@keyframes tr-pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
+
+/* ===========================================================================
+   Back-to-top floating button  (injected by enhance.js)
+   =========================================================================== */
+#tr-to-top {
+    position: fixed;
+    right: clamp(16px, 3vw, 34px);
+    bottom: clamp(16px, 3vw, 34px);
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    z-index: 99990;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(135deg, var(--tr-accent), var(--tr-accent-bright));
+    border: 1px solid var(--bringer-s-border-accent, #5C9DFF80);
+    box-shadow: 0 14px 34px -12px rgba(63, 110, 233, 0.7);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px) scale(0.85);
+    transition: opacity 0.4s var(--tr-ease), transform 0.4s var(--tr-ease),
+                box-shadow 0.3s ease;
+}
+#tr-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+#tr-to-top:hover {
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 20px 42px -12px rgba(63, 110, 233, 0.9);
+}
+#tr-to-top:active { transform: scale(0.94); }
+#tr-to-top svg { width: 20px; height: 20px; display: block; }
+
+/* Circular progress ring around the button */
+#tr-to-top .tr-ring {
+    position: absolute;
+    inset: -4px;
+    transform: rotate(-90deg);
+    pointer-events: none;
+}
+#tr-to-top .tr-ring circle {
+    fill: none;
+    stroke: rgba(255,255,255,0.85);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: var(--tr-ring-len, 163);
+    stroke-dashoffset: var(--tr-ring-len, 163);
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+/* ===========================================================================
+   Form fields — clearer focus + valid/invalid affordances
+   =========================================================================== */
+input:not([type=checkbox]):not([type=radio]),
+textarea,
+select {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+input:not([type=checkbox]):not([type=radio]):focus,
+textarea:focus,
+select:focus {
+    box-shadow: 0 0 0 3px rgba(92, 157, 255, 0.22);
+}
+
+/* ===========================================================================
+   Lazy-image fade-in polish
+   =========================================================================== */
+img.bringer-lazy {
+    transition: opacity 0.6s ease, filter 0.6s ease;
+}
+img.bringer-lazy:not(.loaded):not([data-tr-ready]) {
+    opacity: 0.001;
+    filter: blur(8px);
+}
+
+/* ===========================================================================
+   Reveal-on-scroll helper (progressive enhancement, class added by JS)
+   =========================================================================== */
+.tr-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s var(--tr-ease-out), transform 0.7s var(--tr-ease-out);
+    will-change: opacity, transform;
+}
+.tr-reveal.tr-in { opacity: 1; transform: none; }
+
+/* ===========================================================================
+   Respect reduced-motion — kill the extra motion we introduced
+   =========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .bringer-button,
+    .bringer-button::after,
+    .bringer-portfolio-card,
+    .bringer-portfolio-card-image img,
+    #tr-to-top,
+    .tr-reveal,
+    .bringer-nav .main-menu > li > a::after {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+    .tr-reveal { opacity: 1; }
+}
