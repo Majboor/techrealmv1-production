@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="TechRealm">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4e77fd"/>
+      <stop offset="1" stop-color="#2e54d6"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
+  <text x="256" y="256" fill="#ffffff" font-family="'SF Pro Rounded','Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="240" font-weight="700" text-anchor="middle" dominant-baseline="central" letter-spacing="-6">TR</text>
+</svg>

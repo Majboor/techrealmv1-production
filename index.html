@@ -70,6 +70,8 @@
     <title>TechRealm — Your Partner For Innovations</title>
 
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <!-- Config -->
     <link type="text/css" rel="stylesheet" href="css/config.css">
@@ -79,11 +81,77 @@
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <!-- Responsive -->
     <link type="text/css" rel="stylesheet" href="css/responsive.css">
+    <link type="text/css" rel="stylesheet" href="/css/techrealm-scrollhud.css">
+    <!-- Robustness: mobile/touch/a11y hardening -->
+    <link type="text/css" rel="stylesheet" href="css/robustness.css">
+    <!-- Accessibility & motion-safety -->
+    <link type="text/css" rel="stylesheet" href="css/a11y.css">
 
-    <!-- Favicon -->
-    <link rel="icon" href="images/favicon.png" sizes="32x32">
+    <!-- UI Enhancement Layer -->
+    <link type="text/css" rel="stylesheet" href="css/enhance.css">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://techrealm.online/">
+
+    <!-- Favicon set -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="application-name" content="TechRealm">
+    <meta name="apple-mobile-web-app-title" content="TechRealm">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://techrealm.online/#organization",
+          "name": "TechRealm",
+          "url": "https://techrealm.online/",
+          "logo": "https://techrealm.online/icon-512.png",
+          "image": "https://techrealm.online/images/home01-hero.png",
+          "description": "A software studio building web, mobile, and AI products for agencies, innovators, and dreamers.",
+          "slogan": "Innovation at Your Fingertips, Future in Your Hands.",
+          "email": "Info@techrealm.online",
+          "telephone": "+19176409656",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Baniyas West",
+            "addressRegion": "Abu Dhabi",
+            "addressCountry": "AE"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "Info@techrealm.online",
+            "telephone": "+19176409656",
+            "contactType": "sales",
+            "availableLanguage": ["en"]
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/techrealm/",
+            "https://www.facebook.com/TechRealm.Pakistan"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://techrealm.online/#website",
+          "url": "https://techrealm.online/",
+          "name": "TechRealm",
+          "description": "A software studio building web, mobile, and AI products for agencies, innovators, and dreamers.",
+          "publisher": { "@id": "https://techrealm.online/#organization" },
+          "inLanguage": "en"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
+    <a href="#bringer-main" class="skip-link">Skip to main content</a>
     <div id="loader-wrapper">
         <div id="loader"></div>
     </div>
@@ -103,7 +171,7 @@
                 <nav class="bringer-nav">
                     <ul class="main-menu" data-stagger-appear="fade-down" data-stagger-delay="75">
                         <li class="current-menu-parent">
-                            <a href="/index.html">Home</a>
+                            <a aria-current="page" href="/index.html">Home</a>
                         </li>
                         <li>
                             <a href="/about/about.html">About Us</a>
@@ -113,6 +181,9 @@
                         </li>
                         <li>
                             <a href="/portfolio/folio.html">Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="/estimator/estimator.html">Estimate</a>
                         </li>
                         <li>
                             <a href="/contact/contact.html">Contact</a>
@@ -130,7 +201,7 @@
             <a href="./" class="bringer-logo">
                 <h2 style="font-size:30px;">Tech<span style="color:rgb(78, 119, 253);">Realm</span></h2> 
             </a>
-            <a href="#" class="bringer-mobile-menu-toggler">
+            <a href="#" class="bringer-mobile-menu-toggler" role="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="bringer-mobile-menu">
                 <i class="bringer-menu-toggler-icon">
                     <span></span>
                     <span></span>
@@ -140,7 +211,7 @@
         </div>
     </header>
     <!-- Page Main -->
-    <main id="bringer-main">
+    <main id="bringer-main" tabindex="-1">
         <div class="stg-container">
             <!-- Hero Section -->
             <section>
@@ -155,9 +226,9 @@
                             <!-- Social Proof -->
                             <div class="bringer-hero-social-proof">
                                 <div data-stagger-appear="fade-up" data-stagger-delay="100" data-stagger-unload="fade-up">
-                                    <img src="/images/social-proof01.jpg" alt="Client 01">
-                                    <img src="/images/social-proof02.jpg" alt="Client 02">
-                                    <img src="/images/social-proof03.jpg" alt="Client 03">
+                                    <img decoding="async" src="/images/social-proof01.jpg" alt="Client 01">
+                                    <img decoding="async" src="/images/social-proof02.jpg" alt="Client 02">
+                                    <img decoding="async" src="/images/social-proof03.jpg" alt="Client 03">
                                     <span>24K+</span>
                                 </div>
                                 <p data-appear="fade-up" data-unload="fade-up" data-delay="200">Trusted by 24K+ clients</p>
@@ -169,11 +240,11 @@
                     <div class="bringer-hero-media-wrap bringer-masked-bottom-right bringer-masked-block stg-bottom-gap-l" data-appear="zoom-out" data-unload="zoom-out">
                         <!-- Masked Media -->
                         <div class="bringer-masked-media bringer-masked-media bringer-parallax-media">
-                            <img src="/images/home01-hero.png" alt="Your Partner For Innovations">
+                            <img decoding="async" fetchpriority="high" src="/images/home01-hero.png" alt="Your Partner For Innovations">
                         </div>
                         <!-- Content -->
                         <div class="bringer-masked-content at-bottom-right">
-                            <a href="#page01" class="bringer-square-button" data-appear="fade-left">
+                            <a aria-label="Scroll down to content" href="#page01" class="bringer-square-button" data-appear="fade-left">
                                 <span class="bringer-icon bringer-icon-arrow-down"></span>
                             </a>
                         </div>
@@ -210,7 +281,7 @@
                     </div>
                     <div class="stg-col-6 stg-tp-bottom-gap-l stg-m-bottom-gap" data-unload="fade-right" data-appear="fade-left">
                         <div class="bringer-parallax-media">
-                            <img class="bringer-lazy" src="./images/new banner 2.jpeg" data-src="./images/new banner 2.jpeg" alt="About Us" width="960" height="960">
+                            <img loading="lazy" decoding="async" class="bringer-lazy" src="./images/new banner 2.jpeg" data-src="./images/new banner 2.jpeg" alt="About Us" width="960" height="960">
                         </div>
                     </div>
                 </div><!-- .stg-row -->
@@ -233,7 +304,7 @@
                         <!-- Card Item 01 -->
                         <div class="bringer-block bringer-portfolio-card swiper-slide">
                             <div class="bringer-portfolio-card-image">
-                                <img class="bringer-lazy" src="./logos/dsm.png" data-src="./logos/dsm.png" alt="" width="1200" height="1200">
+                                <img loading="lazy" decoding="async" class="bringer-lazy" src="./logos/dsm.png" data-src="./logos/dsm.png" alt="" width="1200" height="1200">
                             </div>
                             <div class="bringer-portfolio-card-footer">
                                 <div class="bringer-portfolio-card-title">
@@ -248,7 +319,7 @@
                         <!-- Card Item 02 -->
                         <div class="bringer-block bringer-portfolio-card swiper-slide">
                             <div class="bringer-portfolio-card-image">
-                                <img class="bringer-lazy" src="./logos/zuhd.jpg" data-src="./logos/zuhd.jpg" alt="" width="1200" height="1200">
+                                <img loading="lazy" decoding="async" class="bringer-lazy" src="./logos/zuhd.jpg" data-src="./logos/zuhd.jpg" alt="" width="1200" height="1200">
                             </div>
                             <div class="bringer-portfolio-card-footer">
                                 <div class="bringer-portfolio-card-title">
@@ -263,7 +334,7 @@
                         <!-- Card Item 03 -->
                         <div class="bringer-block bringer-portfolio-card swiper-slide">
                             <div class="bringer-portfolio-card-image">
-                                <img class="bringer-lazy" src="./logos/kH.jpg" data-src="./logos/kH.jpg" alt="" width="1200" height="1200">
+                                <img loading="lazy" decoding="async" class="bringer-lazy" src="./logos/kH.jpg" data-src="./logos/kH.jpg" alt="" width="1200" height="1200">
                             </div>
                             <div class="bringer-portfolio-card-footer">
                                 <div class="bringer-portfolio-card-title">
@@ -278,7 +349,7 @@
                         <!-- Card Item 04 -->
                         <div class="bringer-block bringer-portfolio-card swiper-slide">
                             <div class="bringer-portfolio-card-image">
-                                <img class="bringer-lazy" src="/logos/ummah.png" data-src="/logos/ummah.png" alt="" width="1200" height="1200">
+                                <img loading="lazy" decoding="async" class="bringer-lazy" src="/logos/ummah.png" data-src="/logos/ummah.png" alt="" width="1200" height="1200">
                             </div>
                             <div class="bringer-portfolio-card-footer">
                                 <div class="bringer-portfolio-card-title">
@@ -293,7 +364,7 @@
                         <!-- Card Item 05 -->
                         <div class="bringer-block bringer-portfolio-card swiper-slide">
                             <div class="bringer-portfolio-card-image">
-                                <img class="bringer-lazy" src="logos/vgood.png" data-src="logos/vgood.png" alt="" width="1200" height="1200">
+                                <img loading="lazy" decoding="async" class="bringer-lazy" src="logos/vgood.png" data-src="logos/vgood.png" alt="" width="1200" height="1200">
                             </div>
                             <div class="bringer-portfolio-card-footer">
                                 <div class="bringer-portfolio-card-title">
@@ -307,7 +378,7 @@
                             <!-- Card Item 05 -->
                         <div class="bringer-block bringer-portfolio-card swiper-slide">
                             <div class="bringer-portfolio-card-image">
-                                <img class="bringer-lazy" src="logos/klientas.png" data-src="logos/klientas.png" alt="" width="1200" height="1200">
+                                <img loading="lazy" decoding="async" class="bringer-lazy" src="logos/klientas.png" data-src="logos/klientas.png" alt="" width="1200" height="1200">
                             </div>
                             <div class="bringer-portfolio-card-footer">
                                 <div class="bringer-portfolio-card-title">
@@ -322,7 +393,7 @@
                            <!-- Card Item 06 -->
                         <div class="bringer-block bringer-portfolio-card swiper-slide">
                             <div class="bringer-portfolio-card-image">
-                                <img class="bringer-lazy" src="logos/bookshop.png" data-src="/logos/bookshop.png" alt="" width="1200" height="1200">
+                                <img loading="lazy" decoding="async" class="bringer-lazy" src="logos/bookshop.png" data-src="/logos/bookshop.png" alt="" width="1200" height="1200">
                             </div>
                             <div class="bringer-portfolio-card-footer">
                                 <div class="bringer-portfolio-card-title">
@@ -336,7 +407,7 @@
                         <!-- Card Item 07 -->
                         <div class="bringer-block bringer-portfolio-card swiper-slide portfolio-card-realm-ai">
                             <div class="bringer-portfolio-card-image">
-                                <img class="bringer-lazy" src="./logos/realm-ai.png" data-src="./logos/realm-ai.png" alt="TechRealm AI" width="1200" height="1200">
+                                <img loading="lazy" decoding="async" class="bringer-lazy" src="./logos/realm-ai.png" data-src="./logos/realm-ai.png" alt="TechRealm AI" width="1200" height="1200">
                             </div>
                             <div class="bringer-portfolio-card-footer">
                                 <div class="bringer-portfolio-card-title">
@@ -478,33 +549,33 @@
                                 <span class="bringer-label">Follow us:</span>
                                 <ul class="bringer-socials-list" data-stagger-appear="fade-up" data-stagger-delay="75">
                                     <li>
-                                        <a href="https://www.facebook.com/TechRealm.Pakistan" target="_blank" class="bringer-socials-facebook">
+                                        <a aria-label="TechRealm on Facebook" href="https://www.facebook.com/TechRealm.Pakistan" target="_blank" class="bringer-socials-facebook">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-instagram">
+                                        <a aria-label="TechRealm on Instagram" href="#" target="_blank" class="bringer-socials-instagram">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-x">
+                                        <a aria-label="TechRealm on X (Twitter)" href="#" target="_blank" class="bringer-socials-x">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-tiktok">
+                                        <a aria-label="TechRealm on TikTok" href="#" target="_blank" class="bringer-socials-tiktok">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.linkedin.com/company/93270722/
+                                        <a aria-label="TechRealm on Patreon" href="https://www.linkedin.com/company/93270722/
                                         " target="_blank" class="bringer-socials-patreon">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.linkedin.com/company/techrealm/" 
+                                        <a aria-label="TechRealm on LinkedIn" href="https://www.linkedin.com/company/techrealm/" 
                                            target="_blank" 
                                            class="bringer-socials-linkedin">
                                             <i class="fab fa-linkedin"></i>
@@ -549,7 +620,7 @@
                                 <h6>Resources</h6>
                                 <div class="bringer-menu-widget">
                                     <ul>
-                                        <li><a href="/contact/contact.html">Pricing</a></li>
+                                        <li><a href="/estimator/estimator.html">Pricing &amp; Estimator</a></li>
                                         <li><a href="/contact/contact.html">Help Center</a></li>
                                         <li><a href="/services/service.html">Our Services</a></li>
                                         <li><a href="#">Terms of Use</a></li>
@@ -586,9 +657,18 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/libs.js"></script>
     <script src="js/contact_form.js"></script>
+    <!-- Hero A/B variant toggle (?variant=b) — must run before st-core so
+         swapped copy gets the split-text animations. See docs/VARIANTS.md -->
+    <script src="js/variant-ab.js"></script>
     <script src="js/st-core.js"></script>
     <script src="js/classes.js"></script>
     <script src="js/main.js"></script>
+    <!-- Quick Connect dock (feature-b) -->
+    <script src="/js/tr-quick-connect.js" defer></script>
+    <script src="/js/techrealm-scrollhud.js"></script>
+    <!-- UI Enhancement Layer -->
+    <script src="js/enhance.js"></script>
+    <script src="js/a11y.js"></script>
     <script>
         // Loader functionality
         window.addEventListener('load', function() {
@@ -601,5 +681,8 @@
             // Document ready code
         });
     </script>
+
+    <script src="js/robustness.js"></script>
+
 
 </body></html>

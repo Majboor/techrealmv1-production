@@ -176,7 +176,11 @@
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <!-- Responsive -->
     <link type="text/css" rel="stylesheet" href="css/responsive.css">
+    <!-- Robustness: mobile/touch/a11y hardening -->
+    <link type="text/css" rel="stylesheet" href="css/robustness.css">
 
+    <!-- UI Enhancement Layer -->
+    <link type="text/css" rel="stylesheet" href="css/enhance.css">
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.png" sizes="32x32">
 </head>
@@ -410,6 +414,9 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/st-core.js"></script>
         <script src="js/main.js"></script>
+    <!-- UI Enhancement Layer -->
+    <script src="js/enhance.js"></script>
+        <!-- Page scripts load once, in canonical order, before </body>. The inline handler below runs on window.load. -->
         <script>
             // Remove loader when page is fully loaded
             window.addEventListener('load', function() {
@@ -516,5 +523,7 @@
             // Your existing document ready code
         });
     </script>
+    <script src="js/robustness.js"></script>
+
 </body>
 </html>

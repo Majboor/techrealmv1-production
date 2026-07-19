@@ -39,6 +39,8 @@
     <title>Techrealm | Contact </title>
 
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <!-- Config -->
     <link type="text/css" rel="stylesheet" href="css/config.css">
@@ -48,11 +50,40 @@
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <!-- Responsive -->
     <link type="text/css" rel="stylesheet" href="css/responsive.css">
+    <link type="text/css" rel="stylesheet" href="/css/techrealm-scrollhud.css">
+    <!-- Robustness: mobile/touch/a11y hardening -->
+    <link type="text/css" rel="stylesheet" href="css/robustness.css">
+    <!-- Accessibility & motion-safety -->
+    <link type="text/css" rel="stylesheet" href="css/a11y.css">
 
+    <!-- UI Enhancement Layer -->
+    <link type="text/css" rel="stylesheet" href="css/enhance.css">
     <!-- Favicon -->
-    <link rel="icon" href="images/favicon.png" sizes="32x32">
+    <meta name="description" content="Get in touch with TechRealm — book a demo, call, email, or find us in Baniyas West, Abu Dhabi.">
+    <meta name="theme-color" content="#4e77fd">
+    <meta name="author" content="TechRealm">
+    <link rel="canonical" href="https://techrealm.online/contact/contact.html">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TechRealm">
+    <meta property="og:title" content="Contact — TechRealm">
+    <meta property="og:description" content="Book a demo, call, email, or find us in Baniyas West, Abu Dhabi.">
+    <meta property="og:image" content="https://techrealm.online/images/home01-hero.png">
+    <meta property="og:url" content="https://techrealm.online/contact/contact.html">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact — TechRealm">
+    <meta name="twitter:description" content="Book a demo, call, email, or find us in Baniyas West, Abu Dhabi.">
+    <meta name="twitter:image" content="https://techrealm.online/images/home01-hero.png">
+    <!-- Favicon set -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
+    <a href="#bringer-main" class="skip-link">Skip to main content</a>
     <div id="loader-wrapper">
         <div id="loader"></div>
     </div>
@@ -82,8 +113,11 @@
                         <li>
                             <a href="/portfolio/folio.html">Portfolio</a>
                         </li>
+                        <li>
+                            <a href="/estimator/estimator.html">Estimate</a>
+                        </li>
                         <li class="current-menu-parent">
-                            <a href="/contact/contact.html">Contact</a>
+                            <a aria-current="page" href="/contact/contact.html">Contact</a>
                         </li>
                     </ul>
                 </nav>
@@ -98,7 +132,7 @@
             <a href="./" class="bringer-logo">
                 <h2 style="font-size:30px;">Tech<span style="color:rgb(78, 119, 253);">Realm</span></h2> 
             </a>
-            <a href="#" class="bringer-mobile-menu-toggler">
+            <a href="#" class="bringer-mobile-menu-toggler" role="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="bringer-mobile-menu">
                 <i class="bringer-menu-toggler-icon">
                     <span></span>
                     <span></span>
@@ -109,7 +143,7 @@
     </header>
 
     <!-- Page Main -->
-    <main id="bringer-main">
+    <main id="bringer-main" tabindex="-1">
         <div class="stg-container">
             <!-- Section: Let's Talk -->
             <section class="backlight-top divider-bottom">
@@ -153,27 +187,27 @@
                                 <h5>Social Media<span class="bringer-accent">.</span></h5>
                                 <ul class="bringer-socials-list stg-small-gap" data-stagger-appear="fade-up" data-stagger-delay="75">
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-facebook">
+                                        <a aria-label="TechRealm on Facebook" href="#" target="_blank" class="bringer-socials-facebook">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-instagram">
+                                        <a aria-label="TechRealm on Instagram" href="#" target="_blank" class="bringer-socials-instagram">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-x">
+                                        <a aria-label="TechRealm on X (Twitter)" href="#" target="_blank" class="bringer-socials-x">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-tiktok">
+                                        <a aria-label="TechRealm on TikTok" href="#" target="_blank" class="bringer-socials-tiktok">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-patreon">
+                                        <a aria-label="TechRealm on Patreon" href="#" target="_blank" class="bringer-socials-patreon">
                                             <i></i>
                                         </a>
                                     </li>
@@ -219,7 +253,7 @@
             <section class="backlight-top is-fullwidth">
                 <div class="stg-row stg-valign-middle stg-cta-with-image stg-tp-column-reverse">
                     <div class="stg-col-5" data-unload="fade-left">
-                        <div class="bringer-offset-image" data-bg-src="img/cta/contact-section-bg.jpg" data-appear="fade-up" data-threshold="0.25"></div>
+                        <div class="bringer-offset-image" data-bg-src="images/contact.jpg" data-appear="fade-up" data-threshold="0.25"></div>
                         <form action="mail.php" method="post" class="bringer-contact-form bringer-block" data-fill-error="Please, fill out the contact form." data-appear="fade-right" data-threshold="0.25">
                             <div class="bringer-form-content">
                                 <!-- Field: Name -->
@@ -296,27 +330,27 @@
                                 <span class="bringer-label">Follow us:</span>
                                 <ul class="bringer-socials-list" data-stagger-appear="fade-up" data-stagger-delay="75">
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-facebook">
+                                        <a aria-label="TechRealm on Facebook" href="#" target="_blank" class="bringer-socials-facebook">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-instagram">
+                                        <a aria-label="TechRealm on Instagram" href="#" target="_blank" class="bringer-socials-instagram">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-x">
+                                        <a aria-label="TechRealm on X (Twitter)" href="#" target="_blank" class="bringer-socials-x">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-tiktok">
+                                        <a aria-label="TechRealm on TikTok" href="#" target="_blank" class="bringer-socials-tiktok">
                                             <i></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank" class="bringer-socials-patreon">
+                                        <a aria-label="TechRealm on Patreon" href="#" target="_blank" class="bringer-socials-patreon">
                                             <i></i>
                                         </a>
                                     </li>
@@ -358,7 +392,7 @@
                                 <h6>Resources</h6>
                                 <div class="bringer-menu-widget">
                                     <ul>
-                                        <li><a href="/contact/contact.html">Pricing</a></li>
+                                        <li><a href="/estimator/estimator.html">Pricing &amp; Estimator</a></li>
                                         <li><a href="/contact/contact.html">Help Center</a></li>
                                         <li><a href="/services/service.html">Our Services</a></li>
                                         <li><a href="#">Terms of Use</a></li>
@@ -398,6 +432,12 @@
     <script src="js/st-core.js"></script>
     <script src="js/classes.js"></script>
     <script src="js/main.js"></script>
+    <!-- Quick Connect dock (feature-b) -->
+    <script src="/js/tr-quick-connect.js" defer></script>
+    <script src="/js/techrealm-scrollhud.js"></script>
+    <!-- UI Enhancement Layer -->
+    <script src="js/enhance.js"></script>
+    <script src="js/a11y.js"></script>
     <script>
         // Loader functionality
         window.addEventListener('load', function() {
@@ -412,5 +452,8 @@
             // Your existing document ready code
         });
     </script>
+
+    <script src="js/robustness.js"></script>
+
 
 </body></html>

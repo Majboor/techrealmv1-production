@@ -1,0 +1,10 @@
+# robots.txt for TechRealm — https://techrealm.online
+# Allow all reputable crawlers full access.
+User-agent: *
+Allow: /
+
+# Keep editor/config noise out of the index (defensive; not linked anyway).
+Disallow: /.vscode/
+Disallow: /docs/media/
+
+Sitemap: https://techrealm.online/sitemap.xml
