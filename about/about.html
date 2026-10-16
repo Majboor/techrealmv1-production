@@ -46,6 +46,17 @@
         @media (max-width: 960px) {
             .about-page-header .bringer-page-title { font-size: 32px; }
         }
+            .tr-founder-card { padding: 40px; text-align: center; }
+        .tr-monogram { width: 168px; height: 168px; margin: 0 auto 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 60px; font-weight: 600; letter-spacing: 2px; color: var(--bringer-s-heading);
+            background: linear-gradient(135deg, var(--bringer-s-accent), var(--bringer-s-text-accent)); box-shadow: 0 0 0 6px var(--bringer-s-border-mute); }
+        .tr-founder-card h4 { margin: 6px 0 0; }
+        .tr-client-list { padding: 40px; height: 100%; }
+        .tr-client-list ul { list-style: none; margin: 20px 0 0; padding: 0; }
+        .tr-client-list li { padding: 14px 0; border-top: 1px solid var(--bringer-s-border-mute); display: flex; flex-direction: column; gap: 2px; }
+        .tr-client-list li strong { color: var(--bringer-s-heading); font-weight: 600; }
+        .tr-client-list li span { font-size: 0.9em; }
+        @media (max-width: 739px) { .tr-founder-card, .tr-client-list { padding: 28px 20px; } }
     </style>
     <!-- Page Title -->
     <title>Techrealm | About Us</title>
@@ -71,7 +82,7 @@
     <!-- UI Enhancement Layer -->
     <link type="text/css" rel="stylesheet" href="css/enhance.css">
     <!-- Favicon -->
-    <meta name="description" content="Meet TechRealm — a passionate team of developers and designers building powerful digital experiences and helping innovators establish a strong online presence.">
+    <meta name="description" content="Meet TechRealm — a founder-led software studio building powerful digital experiences and helping innovators establish a strong online presence.">
     <meta name="theme-color" content="#4e77fd">
     <meta name="author" content="TechRealm">
     <link rel="canonical" href="https://techrealm.online/about/about.html">
@@ -79,13 +90,13 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="TechRealm">
     <meta property="og:title" content="About Us — TechRealm">
-    <meta property="og:description" content="A passionate team of developers and designers building powerful digital experiences for innovators and dreamers.">
+    <meta property="og:description" content="A founder-led software studio building powerful digital experiences for innovators and dreamers.">
     <meta property="og:image" content="https://techrealm.online/images/home01-hero.png">
     <meta property="og:url" content="https://techrealm.online/about/about.html">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About Us — TechRealm">
-    <meta name="twitter:description" content="A passionate team of developers and designers building powerful digital experiences.">
+    <meta name="twitter:description" content="A founder-led software studio building powerful digital experiences.">
     <meta name="twitter:image" content="https://techrealm.online/images/home01-hero.png">
     <!-- Favicon set -->
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -162,7 +173,7 @@
                 <div class="stg-row">
                     <div class="stg-col-6 stg-offset-3 align-center stg-tp-col-10 stg-tp-offset-1">
                         <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">About Us</h1>
-                        <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">We are a dedicated team of designers and developers driven by creativity and strategic innovation.</p>
+                        <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">A founder-led software studio driven by creativity and strategic innovation.</p>
                     </div>
                 </div>
             </section>
@@ -170,7 +181,7 @@
             <!-- Section: About Us -->
             <section class="divider-bottom">
                 <div class="bringer-parallax-media stg-bottom-gap-l" data-appear="fade-up" data-delay="200" data-unload="fade-up">
-                    <img decoding="async" fetchpriority="high" class="bringer-lazy" src="./images/about.jpg" data-src="./images/about.jpg" alt="About TechRealm" width="1920" height="960">
+                    <img decoding="async" fetchpriority="high" class="bringer-lazy" src="/about/images/our-work.jpg" data-src="/about/images/our-work.jpg" alt="Websites TechRealm built for Digital Software Market, Zuhd, Kelvin Haus and A Very Good Agency" width="1920" height="960">
                 </div>
                 <div class="stg-row stg-large-gap stg-tp-normal-gap">
                     <div class="stg-col-6 stg-vertical-space-between stg-tp-bottom-gap-l" data-unload="fade-left">
@@ -194,7 +205,7 @@
                     <div class="stg-col-6" data-appear="fade-left" data-unload="fade-right" data-delay="100">
                         <p class="bringer-large-text">TechRealm partners with enterprises, agencies, and professional services firms to deliver technology solutions that support business objectives.</p>
                         <p>We combine software development, AI, and digital strategy to help organizations modernize their operations and scale efficiently. From IT infrastructure and cloud solutions to custom applications and intelligent automation, we deliver systems built for reliability and long-term value.</p>
-                        <p>Our team includes software engineers, AI specialists, and IT strategists focused on helping businesses of all sizes achieve measurable outcomes. We offer end-to-end technology services: custom software, AI integration, infrastructure design, and scalable digital solutions aligned with your goals.</p>
+                        <p>We are a small, founder-led studio. Our founder runs every project directly, and we bring in trusted specialists for design, video and content when a project needs them. We offer end-to-end technology services: custom software, AI integration, infrastructure design, and scalable digital solutions aligned with your goals.</p>
                         <p>TechRealm is committed to leveraging technology to transform how organizations work. We help clients strengthen their digital foundation using AI, cloud platforms, and modern infrastructure to create efficient, secure, and future-ready environments. Our mission is to turn strategic objectives into durable, executable solutions.</p>
                     </div>
                 </div>
@@ -206,115 +217,60 @@
                 <div class="stg-row bringer-section-title">
                     <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
                         <div class="align-center">
-                            <h2 data-appear="fade-up" data-unload="fade-up">Our Team</h2>
-                            <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">Our experienced designers, developers, and strategists work with organizations worldwide to deliver results-focused technology solutions.</p>
+                            <h2 data-appear="fade-up" data-unload="fade-up">Who You Work With</h2>
+                            <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">TechRealm is founder-led. You talk to the person building your product, not an account manager.</p>
                         </div>
                     </div>
                 </div>
-                <!-- Team Carousel -->
-                <div class="swiper bringer-carousel" data-appear="fade-up" data-delay="200" data-tp-centered="0" data-unload="fade-up">
-                    <div class="swiper-wrapper">
-                        <!-- Carousel Item -->
-                        <div class="bringer-block bringer-carousel-card swiper-slide">
-                            <div class="bringer-carousel-card-image">
-                                <img loading="lazy" decoding="async" class="bringer-lazy" src="/about/images/tech1.jpeg" data-src="/about/images/tech1.jpeg" alt="Elizabeth Riley" width="600" height="900">
-                            </div>
-                            <div class="bringer-carousel-card-footer">
-                                <div class="bringer-carousel-card-title">
-                                    <span class="bringer-meta">CEO, Founder</span>
-                                    <h6>Elizabeth Riley</h6>
-                                </div>
-                                <span class="bringer-icon bringer-icon-explore"></span>
-                            </div>
-                            <a href="/about/about.html"></a>
-                        </div><!-- .bringer-carousel-card -->
-                        <!-- Carousel Item -->
-                        <div class="bringer-block bringer-carousel-card swiper-slide">
-                            <div class="bringer-carousel-card-image">
-                                <img loading="lazy" decoding="async" class="bringer-lazy" src="/about/images/tech2.jpeg" data-src="/about/images/tech2.jpeg" alt="John Belrose" width="600" height="900">
-                            </div>
-                            <div class="bringer-carousel-card-footer">
-                                <div class="bringer-carousel-card-title">
-                                    <span class="bringer-meta">Concept Artist</span>
-                                    <h6>John Belrose</h6>
-                                </div>
-                                <span class="bringer-icon bringer-icon-explore"></span>
-                            </div>
-                            <a href="/about/about.html"></a>
-                        </div><!-- .bringer-carousel-card -->
-                        <!-- Carousel Item -->
-                        <div class="bringer-block bringer-carousel-card swiper-slide">
-                            <div class="bringer-carousel-card-image">
-                                <img loading="lazy" decoding="async" class="bringer-lazy" src="/about/images/tech3.jpeg" data-src="/about/images/tech3.jpeg" alt="Sonya Altena" width="600" height="900">
-                            </div>
-                            <div class="bringer-carousel-card-footer">
-                                <div class="bringer-carousel-card-title">
-                                    <span class="bringer-meta">Client Manager</span>
-                                    <h6>Sonya Altena</h6>
-                                </div>
-                                <span class="bringer-icon bringer-icon-explore"></span>
-                            </div>
-                            <a href="/about/about.html"></a>
-                        </div><!-- .bringer-carousel-card -->
-                        <!-- Carousel Item -->
-                        <div class="bringer-block bringer-carousel-card swiper-slide">
-                            <div class="bringer-carousel-card-image">
-                                <img loading="lazy" decoding="async" class="bringer-lazy" src="/about/images/tech1.jpeg" data-src="/about/images/tech1.jpeg" alt="Nikolas Rome" width="600" height="900">
-                            </div>
-                            <div class="bringer-carousel-card-footer">
-                                <div class="bringer-carousel-card-title">
-                                    <span class="bringer-meta">Developer</span>
-                                    <h6>Nikolas Rome</h6>
-                                </div>
-                                <span class="bringer-icon bringer-icon-explore"></span>
-                            </div>
-                            <a href="/about/about.html"></a>
-                        </div><!-- .bringer-carousel-card -->
-                        <!-- Carousel Item -->
-                        <div class="bringer-block bringer-carousel-card swiper-slide">
-                            <div class="bringer-carousel-card-image">
-                                <img loading="lazy" decoding="async" class="bringer-lazy" src="/about/images/tech1.jpeg" data-src="/about/images/tech1.jpeg" alt="Candy Tittensor" width="600" height="900">
-                            </div>
-                            <div class="bringer-carousel-card-footer">
-                                <div class="bringer-carousel-card-title">
-                                    <span class="bringer-meta">Design Artist</span>
-                                    <h6>Candy Tittensor</h6>
-                                </div>
-                                <span class="bringer-icon bringer-icon-explore"></span>
-                            </div>
-                            <a href="/about/about.html"></a>
-                        </div><!-- .bringer-carousel-card -->
+                <div class="stg-row stg-large-gap stg-valign-middle" data-appear="fade-up" data-delay="200" data-unload="fade-up">
+                    <div class="stg-col-4 stg-offset-1 stg-tp-col-6 stg-tp-offset-3 stg-m-col-12 stg-m-offset-0 stg-tp-bottom-gap-l">
+                        <div class="bringer-block tr-founder-card">
+                            <div class="tr-monogram" role="img" aria-label="Waleed Ajmal">WA</div>
+                            <span class="bringer-meta">CEO &amp; Founder</span>
+                            <h4>Waleed Ajmal</h4>
+                        </div>
                     </div>
-                    <!-- Pagination -->
-                    <div class="swiper-pagination bringer-dots"></div>
-                </div><!-- .bringer-carousel -->
+                    <div class="stg-col-6 stg-tp-col-12">
+                        <p class="bringer-large-text">Waleed founded TechRealm and leads every engagement personally, from scoping and architecture to launch and support.</p>
+                        <p>He builds web platforms, online stores, AI tools and automation for clients in Australia, the UAE and beyond. For design, video and content work we partner with trusted specialists, and Waleed stays your single point of contact throughout.</p>
+                        <a href="https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21" class="bringer-button">Message Waleed</a>
+                    </div>
+                </div>
             </section>
 
             <!-- Section: Our Story -->
             <section class="backlight-top">
                 <div class="stg-row stg-large-gap stg-m-normal-gap">
                     <div class="stg-col-6 stg-tp-bottom-gap-l stg-m-bottom-gap" data-appear="fade-right" data-unload="fade-left">
-                        <div class="bringer-parallax-media">
-                            <img loading="lazy" decoding="async" class="bringer-lazy" src="/about/images/vanture.jpg" data-src="/about/images/vanture.jpg" alt="Our Story" width="960" height="960">
+                        <div class="bringer-block tr-client-list">
+                            <span class="bringer-meta">Some of the clients we have built for</span>
+                            <ul>
+                                <li><strong>Digital Software Market</strong> <span>Store, admin, AI SEO blogs, email campaigns (UAE)</span></li>
+                                <li><strong>Zuhd</strong> <span>Online store, SEO and content (Australia)</span></li>
+                                <li><strong>Kelvin Haus</strong> <span>Online store and SEO</span></li>
+                                <li><strong>Ummah Directory</strong> <span>Directory website (Australia)</span></li>
+                                <li><strong>A Very Good Agency</strong> <span>Agency website</span></li>
+                                <li><strong>Bakery Hill Dental</strong> <span>AI SEO and social media (Australia)</span></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="stg-col-6 stg-vertical-space-between" data-appear="fade-left" data-unload="fade-right">
                         <div>
                             <h2>From Startup to Trusted Partner</h2>
                             <p class="bringer-large-text">TechRealm was founded with a focus on applying technology to solve real business challenges and support sustainable growth.</p>
-                            <p>We recognized a need for technology partners who combine technical depth with clear communication and accountability. Today, we work with organizations across industries, delivering software, AI, and digital infrastructure that align with strategic priorities. Our approach emphasizes reliability, transparency, and outcomes that matter to our clients.</p>
+                            <p>We saw a need for technology partners who combine technical depth with clear communication and accountability. Today we work with businesses across retail, e-commerce, healthcare and community organisations, delivering software, AI and digital infrastructure that align with their priorities. Our approach emphasizes reliability, transparency, and outcomes that matter to our clients.</p>
                         </div>
-                        <a href="/contact/contact.html" class="bringer-icon-link">
+                        <a href="/portfolio/folio.html" class="bringer-icon-link">
                             <div class="bringer-icon-wrap">
                                 <i class="bringer-icon bringer-icon-explore"></i>
                             </div>
                             <div class="bringer-icon-link-content">
                                 <h6>
-                                    Get in
+                                    See the
                                     <br>
-                                    Touch
+                                    Work
                                 </h6>
-                                <span class="bringer-label">Contact us</span>
+                                <span class="bringer-label">Our portfolio</span>
                             </div>
                         </a><!-- .bringer-icon-link -->
                     </div>
@@ -451,7 +407,7 @@
             <section class="backlight-top">
                 <div class="bringer-bento-grid bringer-grid-cta">
                     <div class="is-large bringer-masked-block" data-appear="fade-right" data-unload="fade-left">
-                        <div class="bringer-grid-cta-media bringer-masked-media" data-bg-src="images/grid-cta-02.jpg">
+                        <div class="bringer-grid-cta-media bringer-masked-media" data-bg-src="/about/images/lets-talk.jpg">
                             <div class="bringer-grid-cta-heading">Ready to discuss your project?</div>
                         </div>
                         <div class="bringer-masked-content at-bottom-right">
@@ -467,7 +423,7 @@
                         </a>
                     </div>
                     <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
-                        <img loading="lazy" decoding="async" src="images/grid-cta-02.jpg" alt="Let's Chat" width="960" height="960">
+                        <img loading="lazy" decoding="async" src="/about/images/lets-talk.jpg" alt="Let's Chat" width="960" height="960">
                     </div>
                 </div>
             </section>
