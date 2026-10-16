@@ -40,7 +40,7 @@
     title: 'Ship the product you keep imagining — faster than you thought.',
     lead: 'TechRealm designs, builds, and ships web, mobile, and AI products for teams who are done waiting. Concept to launch, one senior crew.',
     ctaText: 'Start your build',
-    ctaHref: 'https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21',
+    ctaHref: 'https://wa.me/17136322262?text=Hi%20TechRealm%2C%20I%27d%20like%20to%20talk%20about%20a%20project.',
     ctaSubText: 'Book a free 20-min scoping call'
   };
 

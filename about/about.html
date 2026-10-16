@@ -46,17 +46,14 @@
         @media (max-width: 960px) {
             .about-page-header .bringer-page-title { font-size: 32px; }
         }
-            .tr-founder-card { padding: 40px; text-align: center; }
-        .tr-monogram { width: 168px; height: 168px; margin: 0 auto 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 60px; font-weight: 600; letter-spacing: 2px; color: var(--bringer-s-heading);
-            background: linear-gradient(135deg, var(--bringer-s-accent), var(--bringer-s-text-accent)); box-shadow: 0 0 0 6px var(--bringer-s-border-mute); }
-        .tr-founder-card h4 { margin: 6px 0 0; }
+            .tr-team-point { padding: 36px; height: 100%; }
+        .tr-team-point .bringer-button { margin-top: 20px; }
         .tr-client-list { padding: 40px; height: 100%; }
         .tr-client-list ul { list-style: none; margin: 20px 0 0; padding: 0; }
         .tr-client-list li { padding: 14px 0; border-top: 1px solid var(--bringer-s-border-mute); display: flex; flex-direction: column; gap: 2px; }
         .tr-client-list li strong { color: var(--bringer-s-heading); font-weight: 600; }
         .tr-client-list li span { font-size: 0.9em; }
-        @media (max-width: 739px) { .tr-founder-card, .tr-client-list { padding: 28px 20px; } }
+        @media (max-width: 739px) { .tr-team-point, .tr-client-list { padding: 28px 20px; } }
     </style>
     <!-- Page Title -->
     <title>Techrealm | About Us</title>
@@ -82,7 +79,7 @@
     <!-- UI Enhancement Layer -->
     <link type="text/css" rel="stylesheet" href="css/enhance.css">
     <!-- Favicon -->
-    <meta name="description" content="Meet TechRealm — a founder-led software studio building powerful digital experiences and helping innovators establish a strong online presence.">
+    <meta name="description" content="Meet TechRealm — a small team of friends building powerful digital experiences and helping innovators establish a strong online presence.">
     <meta name="theme-color" content="#4e77fd">
     <meta name="author" content="TechRealm">
     <link rel="canonical" href="https://techrealm.online/about/about.html">
@@ -90,13 +87,13 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="TechRealm">
     <meta property="og:title" content="About Us — TechRealm">
-    <meta property="og:description" content="A founder-led software studio building powerful digital experiences for innovators and dreamers.">
+    <meta property="og:description" content="A small team of friends building powerful digital experiences for innovators and dreamers.">
     <meta property="og:image" content="https://techrealm.online/images/home01-hero.png">
     <meta property="og:url" content="https://techrealm.online/about/about.html">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About Us — TechRealm">
-    <meta name="twitter:description" content="A founder-led software studio building powerful digital experiences.">
+    <meta name="twitter:description" content="A small team of friends building powerful digital experiences.">
     <meta name="twitter:image" content="https://techrealm.online/images/home01-hero.png">
     <!-- Favicon set -->
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -147,7 +144,7 @@
             </div>
             <!-- Header Button -->
             <div class="bringer-header-rp">
-                <a href="https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21" class="bringer-button">Book a Demo</a>
+                <a href="https://wa.me/17136322262?text=Hi%20TechRealm%2C%20I%27d%20like%20to%20talk%20about%20a%20project." class="bringer-button">Book a Demo</a>
             </div>
         </div>
         <!-- Mobile Header -->
@@ -173,7 +170,7 @@
                 <div class="stg-row">
                     <div class="stg-col-6 stg-offset-3 align-center stg-tp-col-10 stg-tp-offset-1">
                         <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">About Us</h1>
-                        <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">A founder-led software studio driven by creativity and strategic innovation.</p>
+                        <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">A small team of friends building software that gets your stuff done.</p>
                     </div>
                 </div>
             </section>
@@ -205,7 +202,7 @@
                     <div class="stg-col-6" data-appear="fade-left" data-unload="fade-right" data-delay="100">
                         <p class="bringer-large-text">TechRealm partners with enterprises, agencies, and professional services firms to deliver technology solutions that support business objectives.</p>
                         <p>We combine software development, AI, and digital strategy to help organizations modernize their operations and scale efficiently. From IT infrastructure and cloud solutions to custom applications and intelligent automation, we deliver systems built for reliability and long-term value.</p>
-                        <p>We are a small, founder-led studio. Our founder runs every project directly, and we bring in trusted specialists for design, video and content when a project needs them. We offer end-to-end technology services: custom software, AI integration, infrastructure design, and scalable digital solutions aligned with your goals.</p>
+                        <p>We are a small startup: a close group of friends who build, ship and support everything ourselves, and bring in trusted specialists for design, video and content when a project needs them. We offer end-to-end technology services: custom software, AI integration, infrastructure design, and scalable digital solutions aligned with your goals.</p>
                         <p>TechRealm is committed to leveraging technology to transform how organizations work. We help clients strengthen their digital foundation using AI, cloud platforms, and modern infrastructure to create efficient, secure, and future-ready environments. Our mission is to turn strategic objectives into durable, executable solutions.</p>
                     </div>
                 </div>
@@ -213,27 +210,33 @@
 
             <!-- Section: Team -->
             <section>
-                <!-- Section Title -->
                 <div class="stg-row bringer-section-title">
                     <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
                         <div class="align-center">
                             <h2 data-appear="fade-up" data-unload="fade-up">Who You Work With</h2>
-                            <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">TechRealm is founder-led. You talk to the person building your product, not an account manager.</p>
+                            <p class="bringer-large-text" data-split-appear="fade-up" data-split-unload="fade-up" data-delay="100">A small group of friends who like building things. No account managers, no hand-offs: you talk directly to the people doing the work.</p>
                         </div>
                     </div>
                 </div>
-                <div class="stg-row stg-large-gap stg-valign-middle" data-appear="fade-up" data-delay="200" data-unload="fade-up">
-                    <div class="stg-col-4 stg-offset-1 stg-tp-col-6 stg-tp-offset-3 stg-m-col-12 stg-m-offset-0 stg-tp-bottom-gap-l">
-                        <div class="bringer-block tr-founder-card">
-                            <div class="tr-monogram" role="img" aria-label="Waleed Ajmal">WA</div>
-                            <span class="bringer-meta">CEO &amp; Founder</span>
-                            <h4>Waleed Ajmal</h4>
+                <div class="stg-row" data-stagger-appear="fade-up" data-delay="200" data-stagger-unload="fade-up">
+                    <div class="stg-col-4 stg-tp-col-12 stg-tp-bottom-gap">
+                        <div class="bringer-block tr-team-point">
+                            <h5>Small on purpose<span class="bringer-accent">.</span></h5>
+                            <p>We keep the team small so every project gets real attention and nothing gets lost between departments.</p>
                         </div>
                     </div>
-                    <div class="stg-col-6 stg-tp-col-12">
-                        <p class="bringer-large-text">Waleed founded TechRealm and leads every engagement personally, from scoping and architecture to launch and support.</p>
-                        <p>He builds web platforms, online stores, AI tools and automation for clients in Australia, the UAE and beyond. For design, video and content work we partner with trusted specialists, and Waleed stays your single point of contact throughout.</p>
-                        <a href="https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21" class="bringer-button">Message Waleed</a>
+                    <div class="stg-col-4 stg-tp-col-12 stg-tp-bottom-gap">
+                        <div class="bringer-block tr-team-point">
+                            <h5>Hands-on<span class="bringer-accent">.</span></h5>
+                            <p>The people you chat with are the ones who design, build, launch and look after your product.</p>
+                        </div>
+                    </div>
+                    <div class="stg-col-4 stg-tp-col-12">
+                        <div class="bringer-block tr-team-point">
+                            <h5>Gets it done<span class="bringer-accent">.</span></h5>
+                            <p>Web, AI and automation, delivered fast. When a project needs extra design, video or content skills, we bring in specialists we trust.</p>
+                            <a href="https://wa.me/17136322262?text=Hi%20TechRealm%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="bringer-button">Chat on WhatsApp</a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -301,7 +304,7 @@
             <div class="bringer-detailed-list-button">
                 <span class="bringer-icon bringer-icon-explore"></span>
             </div>
-            <a href="https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21"></a>
+            <a href="https://wa.me/17136322262?text=Hi%20TechRealm%2C%20I%27d%20like%20to%20talk%20about%20a%20project."></a>
         </li>
         <li>
             <div class="bringer-detailed-list-title">
@@ -313,7 +316,7 @@
             <div class="bringer-detailed-list-button">
                 <span class="bringer-icon bringer-icon-explore"></span>
             </div>
-            <a href="https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21"></a>
+            <a href="https://wa.me/17136322262?text=Hi%20TechRealm%2C%20I%27d%20like%20to%20talk%20about%20a%20project."></a>
         </li>
         <li>
             <div class="bringer-detailed-list-title">
@@ -325,7 +328,7 @@
             <div class="bringer-detailed-list-button">
                 <span class="bringer-icon bringer-icon-explore"></span>
             </div>
-            <a href="https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21"></a>
+            <a href="https://wa.me/17136322262?text=Hi%20TechRealm%2C%20I%27d%20like%20to%20talk%20about%20a%20project."></a>
         </li>
         <li>
             <div class="bringer-detailed-list-title">
@@ -337,7 +340,7 @@
             <div class="bringer-detailed-list-button">
                 <span class="bringer-icon bringer-icon-explore"></span>
             </div>
-            <a href="https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21"></a>
+            <a href="https://wa.me/17136322262?text=Hi%20TechRealm%2C%20I%27d%20like%20to%20talk%20about%20a%20project."></a>
         </li>
         <li>
             <div class="bringer-detailed-list-title">
@@ -349,7 +352,7 @@
             <div class="bringer-detailed-list-button">
                 <span class="bringer-icon bringer-icon-explore"></span>
             </div>
-            <a href="https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21"></a>
+            <a href="https://wa.me/17136322262?text=Hi%20TechRealm%2C%20I%27d%20like%20to%20talk%20about%20a%20project."></a>
         </li>
     </ul>
 </div>
@@ -417,7 +420,7 @@
                         <h3>We deliver technology solutions that drive measurable results.</h3>
                     </div>
                     <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
-                        <a aria-label="Chat with us on WhatsApp" href="https://wa.me/923461115757?text=Directly%20Contact%20our%20CEO%21" class="bringer-square-button">
+                        <a aria-label="Chat with us on WhatsApp" href="https://wa.me/17136322262?text=Hi%20TechRealm%2C%20I%27d%20like%20to%20talk%20about%20a%20project." class="bringer-square-button">
                             <span class="bringer-icon bringer-icon-explore"></span>
                         </a>
                     </div>
@@ -443,7 +446,7 @@
                                 </a>
                                 <div class="bringer-info-description">At TechRealm, we are a passionate team of developers and designers who harness creativity to build powerful digital experiences. We help innovators establish a strong online presence that showcases their work and tells their unique story.</div>
                                 <span class="bringer-label">Email us:<br><span style="text-transform: none;">hamish.techrealm@gmail.com</span></span>
-                                <span class="bringer-label">Contact us:<br><span style="text-transform: none;">+1 (917) 640 - 9656</span></span>
+                                <span class="bringer-label">WhatsApp:<br><a href="https://wa.me/17136322262" target="_blank" rel="noopener" style="text-transform: none;">+1 (713) 632 - 2262</a></span>
                                 <span class="bringer-label">Follow us:</span>
                                 <ul class="bringer-socials-list" data-stagger-appear="fade-up" data-stagger-delay="75">
                                     <li>
